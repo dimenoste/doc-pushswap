@@ -6,7 +6,7 @@
 /*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 13:58:36 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/01/11 15:55:27 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/01/11 16:36:25 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ t_list				*new_lst(void);
 t_bool				is_empty(t_list *lst);
 t_bool				is_empty_stack(t_stack *stk);
 long				stack_length(t_stack *stk);
-long				t_list_length(t_list *lst);
+long				stack_first(t_stack *stk);
+long				stack_last(t_stack *stk);
 void				push(t_stack *from, t_stack *to);
 void				swap(t_stack *sw);
 void				rotate(t_stack *r);
