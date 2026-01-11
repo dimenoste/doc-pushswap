@@ -6,24 +6,27 @@
 /*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 13:58:36 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/01/11 14:59:06 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/01/11 15:55:27 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
 
+# include <stdlib.h>
+# include <unistd.h>
+
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }					t_bool;
+
 typedef enum e_stack_name
 {
 	a,
 	b,
 }					t_stack_name;
-
 
 typedef struct s_list
 {
@@ -39,5 +42,15 @@ typedef struct s_stack
 	long			length;
 	t_stack_name	name;
 }					t_stack;
+
+// Prototypes
+t_list				*new_lst(void);
+t_bool				is_empty(t_list *lst);
+t_bool				is_empty_stack(t_stack *stk);
+long				stack_length(t_stack *stk);
+long				t_list_length(t_list *lst);
+void				push(t_stack *from, t_stack *to);
+void				swap(t_stack *sw);
+void				rotate(t_stack *r);
 
 #endif
