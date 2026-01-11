@@ -58,6 +58,8 @@ int	ft_atoi(char *s)
 	return (sign * n);
 }
 
+
+
 int	main(void)
 {
 	char	*s1;
@@ -76,3 +78,5 @@ int	main(void)
 	printf("my number is %d\n", n);
 	return (0);
 }
+
+
