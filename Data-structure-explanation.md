@@ -1,65 +1,82 @@
+## Data Structure: Circular Doubly-Linked List
 
-## Data structure choice and explanation
-# Double circular linked list
+### Why This Structure?
 
-## Why ?
+We chose a **circular doubly-linked list** for our stack implementation because:
 
-* *Linked list because we want to conserve a particular order between data point*
-* Double linked because we will usually operate from one data point to one of his neighbour
-* A circular to easily implement rotate operations that are key for most sorting algorithms
+1. **Linked list** - Preserves a specific order between data points
+2. **Doubly-linked** - Allows easy access to both next and previous neighbors, essential for stack operations
+3. **Circular** - Simplifies rotate operations by connecting the tail back to the head
 
-## Necessary steps to build a double circular linked
-* The first step would be to write a classic double linked list as such in our project.
+![Circular List Structure](https://i.imgur.com/U70meCL.png)
+*Figure: Circular doubly-linked list with head and tail connections*
 
-```
-typedef struct s_node
-{
-	long			value;
-	struct s_node	*next;
-	struct s_node	*previous;
-}					t_node;
+### Implementation
 
-
-
-```
-* The second step is to link each node keeping in mind in which stack they belong and their length. 
-
-```
-typedef struct s_stack
-{
-	t_node			*head;
-	t_node			*tail;
-	size_t			length;
-	t_stack_name	name;
-}					t_stack;
+#### Node Structure
+```c
+typedef struct s_node {
+    long          value;      // Integer value to sort
+    struct s_node *next;      // Pointer to next node
+    struct s_node *previous;  // Pointer to previous node
+} t_node;
 ```
 
-### Necessary function
-
-* t_bool is_empty_stack(t_stack *lst)
-* t_stack *create_stack_empty(size_t length) // pour creer la stack b qui est vide
-* t_stack *create_stack(un tableau d'entier depuis le parseur ) 
-	* on auras besoin d atoi a en parler avec mehdi
-
-
-* void push (t_stack *from, t_stack *to);
-* void swap (t_stack *stack_name)
-```
-	int temp;
-    temp = stack_name->head->value
-	stack_name->head->value = stack_name->head->next->value
-	stack_name->head->next->value = temp
+#### Stack Structure
+```c
+typedef struct s_stack {
+    t_node        *head;   // Top of the stack
+    t_node        *tail;   // Bottom of the stack
+    size_t        length;  // Number of elements
+    t_stack_name  name;    // Either 'a' or 'b'
+} t_stack;
 ```
 
-* void reverse_rotate(t_stack *stack)
-		* on rebranche
+### Key Operations
+
+#### Rotate (ra/rb)
+Shifts all elements up by one. The first element becomes the last.
 ```
-		stack->tail = stack->tail->prev
-		stack->head  = stack->tail->next
+head = head->next
+tail = head->previous
 ```
 
-* void rotate(t_stack * stack)
+#### Reverse Rotate (rra/rrb)
+Shifts all elements down by one. The last element becomes the first.
 ```
-stack->head = stack->head->next
-stack->tail = stack->head->prev
+tail = tail->previous
+head = tail->next
 ```
+
+#### Swap (sa/sb)
+Swaps the first two elements at the top of the stack.
+```c
+int temp = stack->head->value;
+stack->head->value = stack->head->next->value;
+stack->head->next->value = temp;
+```
+
+#### Push (pa/pb)
+Takes the first element from one stack and puts it at the top of the other.
+
+### Required Functions
+
+- `t_bool is_empty_stack(t_stack *stack)` - Check if stack is empty
+- `t_stack *create_empty_stack(void)` - Create an empty stack (for stack B)
+- `t_stack *create_stack(int *array, int size)` - Create and populate stack from array
+- `void push(t_stack *from, t_stack *to)` - Push operation
+- `void swap(t_stack *stack)` - Swap operation
+- `void rotate(t_stack *stack)` - Rotate operation
+- `void reverse_rotate(t_stack *stack)` - Reverse rotate operation
+
+## Resources
+
+### 1. Doubly-Linked Lists
+- [Structures de données - Listes chaînées (French)](http://fdrouillon.free.fr/alldocs/_LivreC_CPP/Chap6_%20Strct%20donnees%20listes%20&%20algo.pdf)
+- [Programmation MPI - Listes (French)](https://www.informatique-mpi.fr/files/pdf/chap_7.2.pdf)
+- [Wikibooks - Algorithmic Programming (French)](https://fr.wikibooks.org/wiki/Programmation_algorithmique/)
+
+**Note:** A doubly-linked list improves complexity for insertion and deletion operations compared to a singly-linked list, while also allowing backward traversal. However, it requires an additional pointer per element.
+
+### 2. Stacks (LIFO)
+- [Wikipedia - Last In, First Out](https://fr.wikipedia.org/wiki/Last_in,_first_out)
