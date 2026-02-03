@@ -111,21 +111,8 @@ push_swap/
 └── push_swap.h           # Header file with all prototypes
 ```
 
-Each file contains at most 5 functions to comply with 42 Norm requirements.
+Each file contains at most 5 functions to comply with 42 Norm requirements except the make file and test_main.c
 
-## Algorithm Strategy
-
-For the simple O(n²) implementation, we use **Selection Sort** adapted to stack operations:
-
-1. Find the minimum element in stack A
-2. Rotate it to the top (choosing the shorter direction)
-3. Push it to stack B
-4. Repeat until A is empty
-5. Push everything back from B to A
-
-This approach typically uses 350-500 operations for 100 elements, well below the 2000 operation limit.
-
-**Complexity**: O(n²) in terms of both algorithmic steps and push_swap operations generated.
 
 ## Resources
 
