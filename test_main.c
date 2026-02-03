@@ -10,11 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+// === CECI EST UN FICHIER TEST POUR VERIFIER SI TOUTES LES OPERATIONS MARCHENT==
+// JE NE L'AI PAS ECRIT 
+// ON VA REPARLER DE L'IMPLEMENTATION DE PRINTF DU PARSING ETC SI ON SE CROISE 
 #include "push_swap.h"
 #include <stdio.h>
 #include <string.h>
 
-/* ANSI color codes for output */
+/* Utilisation de macros pour l'outpur*/
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define YELLOW "\033[0;33m"
