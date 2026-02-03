@@ -75,6 +75,7 @@ Takes the first element from one stack and puts it at the top of the other.
 - [Structures de données - Listes chaînées (French)](http://fdrouillon.free.fr/alldocs/_LivreC_CPP/Chap6_%20Strct%20donnees%20listes%20&%20algo.pdf)
 - [Programmation MPI - Listes (French)](https://www.informatique-mpi.fr/files/pdf/chap_7.2.pdf)
 - [Wikibooks - Algorithmic Programming (French)](https://fr.wikibooks.org/wiki/Programmation_algorithmique/)
+- https://www.geeksforgeeks.org/dsa/applications-advantages-and-disadvantages-of-circular-doubly-linked-list/
 
 **Note:** A doubly-linked list improves complexity for insertion and deletion operations compared to a singly-linked list, while also allowing backward traversal. However, it requires an additional pointer per element.
 
