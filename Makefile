@@ -97,7 +97,7 @@ norm:
 	@echo "$(YELLOW)Checking norminette...$(NC)"
 	@norminette *.c *.h || true
 
-# Help
+# Help toucu
 help:
 	@echo "$(YELLOW)Available targets:$(NC)"
 	@echo "  make          - Build push_swap (requires main.c)"
