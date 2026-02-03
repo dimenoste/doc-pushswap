@@ -13,17 +13,7 @@
 
 #include "push_swap.h"
 
-/*
- * compute_disorder - Calculates the disorder metric of a stack
- *
- * Return: Disorder value between 0.0 (sorted) and 1.0 (worst case)
- *
- * Algorithm:
- * - Counts inversions: pairs (i,j) where i < j but a[i] > a[j]
- * - Divides by total possible pairs: n*(n-1)/2
- * - Returns 0.0 if stack is sorted, 1.0 if reverse sorted
- * Must be called BEFORE any operations are performed.
- */
+
 float	compute_disorder(t_stack *a)
 {
 	size_t	mistakes;
