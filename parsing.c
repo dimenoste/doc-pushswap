@@ -30,53 +30,52 @@ int	check_strat_selector(char *s)
 	}
 	return (0);
 }
-
-int	ft_atoi(char *s)
+/*
+ * is_valid_strategy - Checks if string is a valid strategy flag
+ *
+ * Return: 1 if valid, 0 otherwise
+ */
+int	is_valid_strategy(char *s)
 {
-	int	max;
+	if (ft_strcmp(s, "--simple"))
+		return (1);
+	if (ft_strcmp(s, "--medium"))
+		return (1);
+	if (ft_strcmp(s, "--complex"))
+		return (1);
+	if (ft_strcmp(s, "--adaptive"))
+		return (1);
+	return (0);
+}
+/*
+ * ft_atoi_safe - Converts string to int with overflow detection
+ *
+ * Return: Converted number, or 0 on error (set error flag if needed)
+ */
+long	ft_atoi_safe(char *s, int *error)
+{
+	long	n;
+	int		sign;
+	int		i;
 
-	int i, n, sign;
-	max = 2147483647;
-	n = i = 0;
+	n = 0;
 	sign = 1;
-	if (s[i] == '-')
+	i = 0;
+	if (s[i] == '-' || s[i] == '+')
 	{
-		sign = -1;
+		if (s[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (s[i] != 0)
+	while (s[i])
 	{
-		if ((n > (max - (int)(s[i] - '0')) / 10) && sign == 1)
-			return (0);
-		if ((n > (max - (int)(s[i] - '1')) / 10) && sign == -1)
-			return (0);
-		if (s[i] < 48 || s[i] > 57)
-			return (0);
-		n = n * 10 + (int)(s[i] - '0');
+		if (s[i] < '0' || s[i] > '9')
+			return (*error = 1, 0);
+		n = n * 10 + (s[i] - '0');
+		if ((sign == 1 && n > 2147483647) ||
+			(sign == -1 && n > 2147483648))
+			return (*error = 1, 0);
 		i++;
 	}
 	return (sign * n);
 }
-
-
-
-int	main(void)
-{
-	char	*s1;
-	int		i;
-	char	*s2;
-	int		n;
-
-	s1 = "--adaptive";
-	i = 0;
-	i = ft_strcmp(s1, "--adaptive");
-	printf("cmp is %i\n", i);
-	i = check_strat_selector(s1);
-	printf("is it a legit strat? %i\n", i);
-	s2 = "2147483647";
-	n = ft_atoi(s2);
-	printf("my number is %d\n", n);
-	return (0);
-}
-
-
