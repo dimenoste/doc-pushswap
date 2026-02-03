@@ -1,0 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    next_step.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/02/03 19:30:58 by yasmine.aichi     #+#    #+#              #
+#    Updated: 2026/02/03 19:34:34 by yasmine.aichi    ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+On va devoir completement finir le paring pour les test 
+et je pense qu'on va pouvoir s'interesser au algortihmes de tri,
+j;ai tout ecrit sauf le makefile et le main_test.c, on a aucune fuite de 
+memoire avec la structure de donnees. tu devrais le l;ancer avec les instructions du makefile 
+J'aimerais bien mettre en place un selction sort ou si tu veux vite en finir un int max en premier algo 
+pour le medium c'est le plus complique donc on verras ensemble,
+je me charge du complex cxar j'aimerais implementer merge sort plutot que radix
+
+on doit aussi implementer printf j'ai mis le mien en attendant et ya une fonction print operations qui sert en attendant mais elle est tres mauvaise.
+
