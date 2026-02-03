@@ -1,6 +1,6 @@
 # Push Swap - Data Structure Implementation
 
-*This project has been created as part of the 42 curriculum by yaichi and Mehdi*
+*This project has been created as part of the 42 curriculum by yaichi and mberraho*
 
 ## Project Overview
 
@@ -125,8 +125,7 @@ Each file contains at most 5 functions to comply with 42 Norm requirements excep
 - [Selection Sort - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/selection-sort-algorithm-2/)
 - [Last In, First Out - Wikipedia (French)](https://fr.wikipedia.org/wiki/Last_in,_first_out)
 
-### Project Subject
-- See `sujet_de_push_swap` for complete project requirements
+
 
 ## Testing
 
