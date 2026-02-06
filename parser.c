@@ -1,6 +1,37 @@
 #include <stdio.h>
 #include <unistd.h>
 
+////////////////////////////////////////////////////////////// function utils
+//////////////////////////////////////////////////////////////////////////////////
+
+int 
+int	ft_patoi(char *s)
+{
+	int	max;
+
+	int i, n, sign;
+	max = 2147483647;
+	n = i = 0;
+	sign = 1;
+	if (s[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (s[i] != 0 && s[i] != ' ' && s[i] <= '0' && s[i] <= '9')
+	{
+		if ((n > (max - (int)(s[i] - '0')) / 10) && sign == 1)
+			return (0);
+		if ((n > (max - (int)(s[i] - '1')) / 10) && sign == -1)
+			return (0);
+		if (s[i] < 48 || s[i] > 57)
+			return (0);
+		n = n * 10 + (int)(s[i] - '0');
+		i++;
+	}
+	return (sign * n);
+}
+
 int	ft_strcmp_space(char *s1, char *s2)
 {
 	int i, j;
@@ -34,6 +65,25 @@ char	*get_strat_selector(char *s)
 	}
 	return (NULL);
 }
+
+char	*get_strat_selector(char *s)
+{
+	int		i;
+	char	*strats[5] = {"--simple", "--medium", "--complex", "--adaptive", 0};
+
+	i = 0;
+	printf("== FROM get_number ==, s passed is :%s\n", s);
+	while (strats[i] != 0)
+	{
+		if (ft_strcmp_space(s, strats[i]) == 1)
+		{
+			return (strats[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 0) Enum to track names of all different states
 typedef enum state_name
 {
@@ -64,6 +114,7 @@ typedef struct s_ctx
 	char					*mystring;
 	char					*addr_first_dash;
 	char					*option_found;
+	int						*candidate_number;
 	int						is_number;
 	char					*strategy;
 	int						nber_dash;
@@ -90,6 +141,19 @@ int	extract_option_in_state(contextState *currState)
 		return (0);
 	currState->option_found = candidate_option;
 	printf("option found is  : %s\n", currState->option_found);
+	return (1);
+}
+
+// extract number in state
+int	extract_number_in_state(contextState *currState)
+{
+	int	*candidate_number;
+
+	candidate_number = get_number(currState->addr_first_dash);
+	if (currState->option_found)
+		return (0);
+	currState->number_found = candidate_number;
+	printf("number  found is  : %d\n", currState->option_found);
 	return (1);
 }
 // 3) Concrete States
@@ -535,7 +599,7 @@ void	stayInInvalid(contextState *currState)
 //// implement classify_input that takes the current character of the string and return the
 /// correct handler of the current state
 
-// this then the current handlers that will give the current parser state to the a specific version of the handler that depends on that same given state !!
+// this is then the current handler that will hand over the current parser state to the a specific version of the handler that depends on that same given state !!
 
 void	classify_input(contextState *mystate)
 {
@@ -595,7 +659,6 @@ int	main(void)
 		printf("number of dash : %d\n", parser.nber_dash);
 		parser.mystring++;
 	}
-
 	print_current_state(&parser);
 	// if ((parser.option_found) || (parser.name_state == InInvalid))
 	// 	printf("error");
