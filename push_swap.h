@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/09 13:50:47 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:12:21 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 typedef struct nber_struct
 {
-	int						number;
+	long					number;
 	int						error;
 }							t_number;
 
-t_number					ft_patoi(char *s);
+t_number					ft_patol(char *s);
 int							ft_strcmp_space(char *s1, char *s2);
 char						*get_strat_selector(char *s);
 char						*get_bench_selector(char *s);
@@ -108,9 +108,16 @@ void						otherWhenInNumber(contextState *currState);
 void						endWhenInNumber(contextState *currState);
 
 // 3) Transitions
-// success on InSuccess
+// transitions
+void						toStartState(contextState *currState);
+void						toInDashState(contextState *currState);
+void						toInOptionState(contextState *currState);
+void						toInSpaceState(contextState *currState);
+void						toInInvalidState(contextState *currState);
+void						toInNumberState(contextState *currState);
 void						toEndSuccess(contextState *currState);
 
+// Implementation of the reactions to events
 stateInterface				InStartState = {&letterWhenInStart,
 					&spaceWhenInStart, &digitWhenInStart, &dashWhenInStart,
 					&otherWhenInStart, &endWhenInStart};
@@ -128,6 +135,25 @@ stateInterface				InNumberState = {&letterWhenInNumber,
 					&spaceWhenInNumber, &digitWhenInNumber, &dashWhenInNumber,
 					&otherWhenInNumber, &endWhenInNumber};
 stateInterface				InSuccessState = {&toEndSuccess};
+
+// struct to initialize the implemtations of the reactions to events (piointer of function that implement the handlers)
+typedef struct implement_handlers
+{
+	stateInterface			*InStartState;
+	stateInterface			*InDashState;
+	stateInterface			*InOptionState;
+	stateInterface			*InSpaceState;
+	stateInterface			*InInvalidState;
+	stateInterface			*InNumberState;
+	stateInterface *InSuccessState
+}							t_implement_handlers;
+
+t_implement_handlers		*init_state_start(t_implement_handlers *mystates);
+t_implement_handlers		*init_state_dash(t_implement_handlers *mystates);
+t_implement_handlers		*init_state_space(t_implement_handlers *mystates);
+t_implement_handlers		*init_state_number(t_implement_handlers *mystates);
+t_implement_handlers		*init_state_number(t_implement_handlers *mystates);
+
 /////////////////////////////////////////////////////////////// STRUCTURE OF STACK/////////////////////////////////////////////////////////////////////////
 
 typedef enum e_bool

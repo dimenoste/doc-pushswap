@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 13:36:35 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:12:07 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-t_number	ft_patoi(char *s)
+t_number	ft_patol(char *s)
 {
 	int			max;
 	t_number	output;
@@ -24,7 +24,7 @@ t_number	ft_patoi(char *s)
 	output.error = 1;
 	output.number = i = n = 0;
 	sign = 1;
-	printf("from ft_patoi, number to process  is |%s|\n", s);
+	printf("from ft_patol, number to process  is |%s|\n", s);
 	if (s[i] == '-')
 	{
 		sign = -1;
@@ -32,19 +32,19 @@ t_number	ft_patoi(char *s)
 	}
 	while (s[i] != '\0' && s[i] != ' ')
 	{
-		printf("from ft_patoi, current char  is |%c|\n", s[i]);
+		printf("from ft_patol, current char  is |%c|\n", s[i]);
 		if (((n > (max - (int)(s[i] - '0')) / 10) && sign == 1) || ((n > (max
 						- (int)(s[i] - '1')) / 10) && sign == -1) || (s[i] < 48
 				|| s[i] > 57))
 		{
-			printf("from ft_patoi, error case :  ccurrent char  is |%c|\n",
+			printf("from ft_patol, error case :  ccurrent char  is |%c|\n",
 				s[i]);
 			return (output);
 		}
 		n = n * 10 + (int)(s[i] - '0');
 		i++;
 	}
-	printf("from ft_patoi, output number is |%d|\n", output.number);
+	printf("from ft_patol, output number is |%d|\n", output.number);
 	output.number = sign * n;
 	output.error = 0;
 	return (output);

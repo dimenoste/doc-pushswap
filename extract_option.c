@@ -6,13 +6,12 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:53:44 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 13:53:56 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:12:51 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// function only when i exit from option
 int	extract_option_in_state(contextState *currState)
 {
 	char	*candidate_option;

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:30:19 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 13:30:44 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:12:07 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	otherWhenInNumber(contextState *currState)
 	printf("============================================\n");
 }
 
-
 void	spaceWhenInNumber(contextState *currState)
 {
 	t_number	result;
@@ -40,7 +39,7 @@ void	spaceWhenInNumber(contextState *currState)
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	printf("from spaceWhenInNumber, start number is  : %s\n",
 		currState->start_number);
-	result = ft_patoi(currState->start_number);
+	result = ft_patol(currState->start_number);
 	if (!result.error)
 	{
 		currState->candidate_number = result.number;
@@ -80,7 +79,7 @@ void	endWhenInNumber(contextState *currState)
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	printf("from endWhenInNumber, number as string : %s\n",
 		currState->start_number);
-	result = ft_patoi(currState->start_number);
+	result = ft_patol(currState->start_number);
 	if (result.error == 0)
 	{
 		currState->candidate_number = result.number;
