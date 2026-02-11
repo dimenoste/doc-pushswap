@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   operations_swap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 11:12:08 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/03 18:43:59 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/01/15 11:12:08 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/02/10 21:55:34 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_stack *stack, t_op_list *ops)
@@ -58,5 +59,3 @@ void	push(t_stack *from, t_stack *to, t_op_list *ops)
 	else
 		add_operation(ops, OP_PB);
 }
-
-

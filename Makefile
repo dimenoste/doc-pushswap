@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/09 20:30:16 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/11 22:45:00 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,26 @@ SRCS = stack_init.c \
        stack_helpers.c \
        operations_swap.c \
        operations_rotate.c \
-       operations_list.c
+       operations_list.c \
+	   iniatize_states1.c \
+	   reactions_WhenInInvalid.c \
+	   reactions_WhenInStart1.c \
+	   reactions_WhenInStart2.c \
+	   initialize_parser.c  \
+	   parser.c \
+	   reactions_WhenInNumber1.c \
+	   reactions_WhenInNumber2.c \
+	   test_main.c \
+	   extract_option.c \
+	   initialize_state2.c \
+	   reactions_WhenInOption1.c \
+	    reactions_WhenInOption2.c \
+	   transitions_functions_parsing.c \
+	   reactions_WhenInDash1.c \
+	   reactions_WhenInDash2.c \
+	   reactions_WhenInSpace1.c \
+	    reactions_WhenInSpace2.c \
+	   utils_parsing.c
 #a ajouter plus tard le parsing et le disorder
 
 # Test files
@@ -52,7 +71,7 @@ NC = \033[0m
 all: $(NAME)
 
 # Build push_swap (will need main.c later)
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $()
 	@echo "$(YELLOW)Building $(NAME)...$(NC)"
 	@echo "$(RED)Note: main.c not yet implemented, use 'make test' instead$(NC)"
 
@@ -67,7 +86,7 @@ $(NAME_OP_TEST): $(OBJS) $(TEST_OBJS)
 # Build test of parser executable
 test_parser: $(NAME_PARSER_TEST)
 
-$(NAME_PARSER_TEST): $(OBJS) $(TEST_PARSER)
+$(NAME_PARSER_TEST): $(OBJS) $(TEST_PARSER) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) $(TEST_PARSER) -o $(NAME_OP_TEST)
 	@echo "$(GREEN)✓ $(NAME_PARSER_TEST) compiled successfully!$(NC)"
 	@echo "$(GREEN)Run with: ./$(NAME_PARSER_TEST)$(NC)"
@@ -85,7 +104,7 @@ clean:
 
 # Clean everything
 fclean: clean
-	@rm -f $(NAME) $(NAME_OP_TEST)
+	@rm -f $(NAME) $(NAME_OP_TEST) $(NAME_PARSER_TEST)
 	@echo "$(GREEN)✓ Executables removed$(NC)"
 
 # Rebuild everything

@@ -6,13 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:07 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 20:11:00 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:40:24 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_current_state(contextState *ptr_parser)
+void	print_current_state(t_context_state *ptr_parser)
 {
 	printf("====== FINAL DATA IN STATE ===============\n");
 	printf("current state of string is : %s\n",
@@ -23,16 +23,14 @@ void	print_current_state(contextState *ptr_parser)
 
 int	main(int argc, char *argv[])
 {
-	char			curr_char;
-	e_state_name	nameOfCurrentState;
-	int				i;
-	contextState	parser;
-	int				j;
+	int						i;
+	t_context_state			parser;
+	t_implement_handlers	mystates;
 
 	i = 1;
 	if (argc < 2)
 		return (0);
-	initStartState(&parser);
+	toin_start_state(&parser, &mystates);
 	printf("word to parse : %s\n", parser.addr_first_dash);
 	while (i <= argc)
 	{
@@ -47,7 +45,7 @@ int	main(int argc, char *argv[])
 				return (0);
 			}
 			printf("parser.mystring : %s\n", parser.mystring);
-			classify_input(&parser);
+			classify_input(&parser, &mystates);
 			printf("number of dash : %d\n", parser.nber_dash);
 			parser.mystring++;
 		}

@@ -6,13 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:53:44 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 18:12:51 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:46:02 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	extract_option_in_state(contextState *currState)
+int	extract_option_in_state(t_context_state *currState)
 {
 	char	*candidate_option;
 
@@ -27,7 +27,7 @@ int	extract_option_in_state(contextState *currState)
 		return (0);
 }
 
-int	extract_bench_in_state(contextState *currState)
+int	extract_bench_in_state(t_context_state *currState)
 {
 	char *candidate_bench;
 

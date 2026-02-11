@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/09 18:12:21 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:49:32 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,12 @@
 # include <stdio.h> // A SUPPRIMER !!!!!!!!!!!!!!!!!!!
 # include <stdlib.h>
 # include <unistd.h>
-/////////////////////////////////////////////////////////////// UTILS FOR PARSING/////////////////////////////////////////////////////////////////////////
 
-typedef struct nber_struct
-{
-	long					number;
-	int						error;
-}							t_number;
+typedef struct implement_handlers	t_implement_handlers;
+typedef enum state_name				t_enum_state_name;
+typedef struct s_interface			t_state_interface;
 
-t_number					ft_patol(char *s);
-int							ft_strcmp_space(char *s1, char *s2);
-char						*get_strat_selector(char *s);
-char						*get_bench_selector(char *s);
-const char					*get_state_name(e_state_name enum_name);
-void						classify_input(contextState *mystate);
-/////////////////////////////////////////////////////////////// STATE MACHINE FOR PARSING/////////////////////////////////////////////////////////////////////////
-// 0) Enum to track names of all different states
+//////////STATE MACHINE FOR PARSING///////////
 typedef enum state_name
 {
 	InStart,
@@ -40,132 +30,143 @@ typedef enum state_name
 	InInvalid,
 	InNumber,
 	InSuccess
-}							e_state_name;
+}									t_enum_state_name;
 
 // 1) Context
-typedef struct s_interface	stateInterface;
 typedef struct s_ctx
 {
-	stateInterface			*interface;
-	e_state_name			name_state;
-	char					*mystring;
-	char					*addr_first_dash;
-	char					*start_number;
-	int						nber_digits;
-	char					*option_found;
-	int						candidate_number;
-	char					*bench_found;
-	int						nber_dash;
-}							contextState;
+	t_state_interface				*interface;
+	t_enum_state_name				name_state;
+	char							*mystring;
+	char							*addr_first_dash;
+	char							*start_number;
+	int								nber_digits;
+	char							*option_found;
+	int								candidate_number;
+	char							*bench_found;
+	int								nber_dash;
+}									t_context_state;
+
 // 2) State Interface
-struct						s_interface
+typedef struct s_interface
 {
-	void					(*handler_letter)(contextState *);
-	void					(*handler_space)(contextState *);
-	void					(*handler_digit)(contextState *);
-	void					(*handler_dash)(contextState *);
-	void					(*handler_other)(contextState *);
-	void					(*handler_end)(contextState *);
-};
+	void							(*handler_letter)(t_context_state *,
+									t_implement_handlers *mystates);
+	void							(*handler_space)(t_context_state *,
+									t_implement_handlers *mystates);
+	void							(*handler_digit)(t_context_state *,
+									t_implement_handlers *mystates);
+	void							(*handler_dash)(t_context_state *,
+									t_implement_handlers *mystates);
+	void							(*handler_other)(t_context_state *,
+									t_implement_handlers *mystates);
+	void							(*handler_end)(t_context_state *,
+									t_implement_handlers *mystates);
+}									t_state_interface;
 
-// delarations of implementations for InStart
-void						letterWhenInStart(contextState *currState);
-void						spaceWhenInStart(contextState *currState);
-void						digitWhenInStart(contextState *currState);
-void						dashWhenInStart(contextState *currState);
-void						otherWhenInStart(contextState *currState);
-void						endWhenInStart(contextState *currState);
-// delarations of implementations for InDash
-void						letterWhenInDash(contextState *currState);
-void						spaceWhenInDash(contextState *currState);
-void						digitWhenInDash(contextState *currState);
-void						dashWhenInDash(contextState *currState);
-void						otherWhenInDash(contextState *currState);
-void						endWhenInDash(contextState *currState);
-// delarations of implementations for InOption
-void						letterWhenInOption(contextState *currState);
-void						spaceWhenInOption(contextState *currState);
-void						digitWhenInOption(contextState *currState);
-void						dashWhenInOption(contextState *currState);
-void						otherWhenInOption(contextState *currState);
-void						endWhenInOption(contextState *currState);
-// delarations of implementations for InSpace
-void						letterWhenInSpace(contextState *currState);
-void						spaceWhenInSpace(contextState *currState);
-void						digitWhenInSpace(contextState *currState);
-void						dashWhenInSpace(contextState *currState);
-void						otherWhenInSpace(contextState *currState);
-void						endWhenInSpace(contextState *currState);
-// delarations of implementations for InInvalid(
-void						stayInInvalid(contextState *currState);
-
-// delarations of implementations for InNumber
-void						letterWhenInNumber(contextState *currState);
-void						spaceWhenInNumber(contextState *currState);
-void						digitWhenInNumber(contextState *currState);
-void						dashWhenInNumber(contextState *currState);
-void						otherWhenInNumber(contextState *currState);
-void						endWhenInNumber(contextState *currState);
-
-// 3) Transitions
-// transitions
-void						toStartState(contextState *currState);
-void						toInDashState(contextState *currState);
-void						toInOptionState(contextState *currState);
-void						toInSpaceState(contextState *currState);
-void						toInInvalidState(contextState *currState);
-void						toInNumberState(contextState *currState);
-void						toEndSuccess(contextState *currState);
-
-// Implementation of the reactions to events
-stateInterface				InStartState = {&letterWhenInStart,
-					&spaceWhenInStart, &digitWhenInStart, &dashWhenInStart,
-					&otherWhenInStart, &endWhenInStart};
-stateInterface				InDashState = {&letterWhenInDash, &spaceWhenInDash,
-					&digitWhenInDash, &dashWhenInDash, &otherWhenInDash,
-					&endWhenInDash};
-stateInterface				InOptionState = {&letterWhenInOption,
-					&spaceWhenInOption, &digitWhenInOption, &dashWhenInOption,
-					&otherWhenInOption, &endWhenInOption};
-stateInterface				InSpaceState = {&letterWhenInSpace,
-					&spaceWhenInSpace, &digitWhenInSpace, &dashWhenInSpace,
-					&otherWhenInSpace, &endWhenInSpace};
-stateInterface				InInvalidState = {&stayInInvalid};
-stateInterface				InNumberState = {&letterWhenInNumber,
-					&spaceWhenInNumber, &digitWhenInNumber, &dashWhenInNumber,
-					&otherWhenInNumber, &endWhenInNumber};
-stateInterface				InSuccessState = {&toEndSuccess};
-
-// struct to initialize the implemtations of the reactions to events (piointer of function that implement the handlers)
+// 3) struct to initialize the implemtations of
+// the reactions to events (piointer of function that implement the handlers)
 typedef struct implement_handlers
 {
-	stateInterface			*InStartState;
-	stateInterface			*InDashState;
-	stateInterface			*InOptionState;
-	stateInterface			*InSpaceState;
-	stateInterface			*InInvalidState;
-	stateInterface			*InNumberState;
-	stateInterface *InSuccessState
-}							t_implement_handlers;
+	t_state_interface				*in_start_state;
+	t_state_interface				*in_dash_state;
+	t_state_interface				*in_option_state;
+	t_state_interface				*in_space_state;
+	t_state_interface				*in_invalid_state;
+	t_state_interface				*in_number_state;
+	t_state_interface				*in_success_state;
+}									t_implement_handlers;
 
-t_implement_handlers		*init_state_start(t_implement_handlers *mystates);
-t_implement_handlers		*init_state_dash(t_implement_handlers *mystates);
-t_implement_handlers		*init_state_space(t_implement_handlers *mystates);
-t_implement_handlers		*init_state_number(t_implement_handlers *mystates);
-t_implement_handlers		*init_state_number(t_implement_handlers *mystates);
+t_implement_handlers				*init_state_start(t_implement_handlers *mystates);
+t_implement_handlers				*init_state_dash(t_implement_handlers *mystates);
+t_implement_handlers				*init_state_space(t_implement_handlers *mystates);
+t_implement_handlers				*init_state_option(t_implement_handlers *mystates);
+t_implement_handlers				*init_state_number(t_implement_handlers *mystates);
 
-/////////////////////////////////////////////////////////////// STRUCTURE OF STACK/////////////////////////////////////////////////////////////////////////
+// delarations of implementations for InStart
+void	letter_when_in_start(t_context_state *currState, t_implement_handlers *mystates);
+void	space_when_in_start(t_context_state *currState, t_implement_handlers *mystates);
+void	digit_when_in_start(t_context_state *currState, t_implement_handlers *mystates);
+void	dash_when_in_start(t_context_state *currState, t_implement_handlers *mystates);
+void	other_when_in_start(t_context_state *currState, t_implement_handlers *mystates);
+void	end_when_in_start(t_context_state *currState, t_implement_handlers *mystates);
+// delarations of implementations for InDash
+void	letter_when_in_dash(t_context_state *currState, t_implement_handlers *mystates);
+void	space_when_in_dash(t_context_state *currState, t_implement_handlers *mystates);
+void	digit_when_in_dash(t_context_state *currState, t_implement_handlers *mystates);
+void	dash_when_in_dash(t_context_state *currState, t_implement_handlers *mystates);
+void	other_when_in_dash(t_context_state *currState, t_implement_handlers *mystates);
+void	end_when_in_dash(t_context_state *currState, t_implement_handlers *mystates);
+// delarations of implementations for InOption
+void	letter_when_in_option(t_context_state *currState, t_implement_handlers *mystates);
+void	space_when_in_option(t_context_state *currState, t_implement_handlers *mystates);
+void	digit_when_in_option(t_context_state *currState, t_implement_handlers *mystates);
+void	dash_when_in_option(t_context_state *currState, t_implement_handlers *mystates);
+void	other_when_in_option(t_context_state *currState, t_implement_handlers *mystates);
+void	end_when_in_option(t_context_state *currState, t_implement_handlers *mystates);
+// delarations of implementations for InSpace
+void	letter_when_in_space(t_context_state *currState, t_implement_handlers *mystates);
+void	space_when_in_space(t_context_state *currState, t_implement_handlers *mystates);
+void	digit_when_in_space(t_context_state *currState, t_implement_handlers *mystates);
+void	dash_when_in_space(t_context_state *currState, t_implement_handlers *mystates);
+void	other_when_in_space(t_context_state *currState, t_implement_handlers *mystates);
+void	end_when_in_space(t_context_state *currState, t_implement_handlers *mystates);
+// delarations of implementations for InInvalid(
+void	stay_in_invalid(t_context_state *currState, t_implement_handlers *mystates);
 
+// delarations of implementations for InNumber
+void	letter_when_in_number(t_context_state *currState, t_implement_handlers *mystates);
+void	space_when_in_number(t_context_state *currState, t_implement_handlers *mystates);
+void	digit_when_in_number(t_context_state *currState, t_implement_handlers *mystates);
+void	dash_when_in_number(t_context_state *currState, t_implement_handlers *mystates);
+void	other_when_in_number(t_context_state *currState, t_implement_handlers *mystates);
+void	end_when_in_number(t_context_state *currState, t_implement_handlers *mystates);
+
+// 4) Transitions functions
+// transitions
+void	toin_start_state(t_context_state *currState, t_implement_handlers *mystates);
+void	toin_dash_state(t_context_state *currState, t_implement_handlers *mystates);
+void	toin_option_state(t_context_state *currState, t_implement_handlers *mystates);
+void	toin_space_state(t_context_state *currState, t_implement_handlers *mystates);
+void	toin_invalid_state(t_context_state *currState, t_implement_handlers *mystates);
+void	toin_number_state(t_context_state *currState, t_implement_handlers *mystates);
+void	to_end_success(t_context_state *currState, t_implement_handlers *mystates);
+
+///////////UTILS FOR PARSING/////////
+typedef struct vars_ft_patol
+{
+	int								max;
+	int								i;
+	int								n;
+	int								sign;
+}									t_vars_ft_patols;
+
+typedef struct nber_struct
+{
+	long							number;
+	int								error;
+}									t_number;
+
+t_number							ft_patol(char *s);
+int									ft_strcmp_space(char *s1, char *s2);
+char								*get_strat_selector(char *s);
+char								*get_bench_selector(char *s);
+const char							*get_state_name(t_enum_state_name enum_name);
+void	classify_input(t_context_state *curr_state, t_implement_handlers *mystates);
+int	extract_option_in_state(t_context_state *currState);
+int	extract_bench_in_state(t_context_state *currState);
+
+////////////STRUCTURE OF STACK ////
 typedef enum e_bool
 {
 	FALSE,
 	TRUE
-}							t_bool;
+}									t_bool;
 typedef enum e_stack_name
 {
 	A,
 	B
-}							t_stack_name;
+}									t_stack_name;
 typedef enum e_op_type
 {
 	OP_SA,
@@ -179,57 +180,62 @@ typedef enum e_op_type
 	OP_RRA,
 	OP_RRB,
 	OP_RRR
-}							t_op_type;
+}									t_op_type;
 
 typedef struct s_node
 {
-	long					value;
-	struct s_node			*next;
-	struct s_node			*previous;
-}							t_node;
+	long							value;
+	struct s_node					*next;
+	struct s_node					*previous;
+}									t_node;
 typedef struct s_stack
 {
-	t_node					*head;
-	t_node					*tail;
-	size_t					length;
-	t_stack_name			name;
-}							t_stack;
+	t_node							*head;
+	t_node							*tail;
+	size_t							length;
+	t_stack_name					name;
+}									t_stack;
 
 typedef struct s_op_list
 {
-	t_op_type				*operations;
-	size_t					count;
-	size_t					capacity;
-}							t_op_list;
+	t_op_type						*operations;
+	size_t							count;
+	size_t							capacity;
+}									t_op_list;
 
 /// === stack_init.c file ===
-t_node						*new_node(long value);
-t_stack						*new_stack(t_stack_name name);
-void						clear_stack(t_stack **stk);
+t_node								*new_node(long value);
+t_stack								*new_stack(t_stack_name name);
+void	clear_stack(t_stack **stk);
 // === stack_ops.c file ===
-void						stack_add_back(t_stack *stk, t_node *node);
-void						stack_add_front(t_stack *stk, t_node *node);
-t_node						*stack_pop_front(t_stack *from);
+void	stack_add_back(t_stack *stk, t_node *node);
+void	stack_add_front(t_stack *stk, t_node *node);
+t_node								*stack_pop_front(t_stack *from);
 //=== operations.c file ===
-void						swap(t_stack *stack, t_op_list *ops);
-void						swap_both(t_stack *a, t_stack *b, t_op_list *ops);
-void						push(t_stack *from, t_stack *to, t_op_list *ops);
+void	swap(t_stack *stack, t_op_list *ops);
+void	swap_both(t_stack *a, t_stack *b,
+										t_op_list *ops);
+void	push(t_stack *from, t_stack *to,
+										t_op_list *ops);
 //=== operations_rotate.c ===
-void						rotate(t_stack *stack, t_op_list *ops);
-void						rotate_both(t_stack *a, t_stack *b, t_op_list *ops);
-void						reverse_rotate(t_stack *stack, t_op_list *ops);
-void						reverse_rotate_both(t_stack *a, t_stack *b,
-								t_op_list *ops);
+void	rotate(t_stack *stack, t_op_list *ops);
+void	rotate_both(t_stack *a, t_stack *b,
+										t_op_list *ops);
+void	reverse_rotate(t_stack *stack,
+										t_op_list *ops);
+void	reverse_rotate_both(t_stack *a, t_stack *b,
+										t_op_list *ops);
 // === operations_list.c file ===
-t_op_list					*new_op_list(void);
-void						add_operation(t_op_list *list, t_op_type op);
-void						print_operations(t_op_list *list);
-void						clear_op_list(t_op_list **list);
+t_op_list							*new_op_list(void);
+void	add_operation(t_op_list *list,
+										t_op_type op);
+void	print_operations(t_op_list *list);
+void	clear_op_list(t_op_list **list);
 // stack_helpers.c (utils and fast for debugging during algorithms deployment)
-t_bool						is_empty_stack(t_stack *stk);
-size_t						stack_length(t_stack *stk);
-long						stack_top_peek(t_stack *stk);
-t_node						*stack_last(t_stack *stk);
-t_node						*stack_first(t_stack *stk);
+t_bool								is_empty_stack(t_stack *stk);
+size_t								stack_length(t_stack *stk);
+long								stack_top_peek(t_stack *stk);
+t_node								*stack_last(t_stack *stk);
+t_node								*stack_first(t_stack *stk);
 
 #endif

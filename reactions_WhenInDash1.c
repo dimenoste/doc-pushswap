@@ -1,104 +1,88 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reactions_WhenInOption.c                           :+:      :+:    :+:   */
+/*   reactions_WhenInDash1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/09 13:28:43 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 13:28:47 by mberraho         ###   ########.fr       */
+/*   Created: 2026/02/09 13:52:54 by mberraho          #+#    #+#             */
+/*   Updated: 2026/02/11 22:56:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// In OptionState
-void	letterWhenInOption(contextState *currState)
+// In InDash
+void	letter_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toInOptionState(currState);
+	toin_option_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	printf("============================================\n");
 }
 
-void	otherWhenInOption(contextState *currState)
+void	other_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
+{
+	letter_when_in_start(currState, mystates);
+}
+
+void	space_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toInInvalidState(currState);
+	toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	printf("============================================\n");
 }
 
-void	spaceWhenInOption(contextState *currState)
+void	digit_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
-	char	*option_found;
-	int		is_option_found;
-	int		is_bench_found;
-
-	is_option_found = -1;
-	is_bench_found = -1;
 	printf("============================================\n");
-	is_option_found = extract_option_in_state(currState);
-	is_bench_found = extract_bench_in_state(currState);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	if (is_option_found == 0 && is_bench_found == 0)
+	if (currState->nber_dash == 1)
 	{
-		toInInvalidState(currState);
+		currState->start_number = currState->addr_first_dash;
+		toin_number_state(currState, mystates);
+		currState->nber_dash = 0;
+	}
+	else if (currState->nber_dash == 0)
+	{
+		currState->start_number = currState->addr_first_dash; // pas sur de ca
+		toin_number_state(currState, mystates);
+		currState->nber_dash = 0;
 	}
 	else
-	{
-		toInSpaceState(currState);
-	}
+		toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
-	// verify option
-}
-
-void	digitWhenInOption(contextState *currState)
-{
-	printf("============================================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toInInvalidState(currState);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
+	// reset dash counter to 0
 	printf("============================================\n");
 }
 
-void	dashWhenInOption(contextState *currState)
+void	dash_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	if (currState->nber_dash != 2)
-		toInInvalidState(currState);
-	else
-		toInDashState(currState);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
-}
-
-void	endWhenInOption(contextState *currState)
-{
-	char *option_found;
-	int is_option_found;
-	int is_bench_found;
-
-	is_option_found = -1;
-	is_bench_found = -1;
-	printf("============================================\n");
-	is_option_found = extract_option_in_state(currState);
-	is_bench_found = extract_bench_in_state(currState);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	if (is_option_found == 0 && is_bench_found == 0)
+	if (currState->nber_dash < 2)
 	{
-		toInInvalidState(currState);
-	}
-	else if (!currState->option_found)
-	{
-		toInInvalidState(currState);
+		toin_dash_state(currState, mystates);
 	}
 	else
-		toEndSuccess(currState);
-	printf("end has been reached : END OF PROGRAM\n");
+		toin_invalid_state(currState, mystates);
+	printf("current state is : %s\n", get_state_name(currState->name_state));
+	printf("============================================\n");
+}
+
+void	end_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
+{
+	printf("============================================\n");
+	printf("current state is : %s\n", get_state_name(currState->name_state));
+	toin_invalid_state(currState, mystates);
 	printf("============================================\n");
 }

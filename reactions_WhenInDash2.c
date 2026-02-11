@@ -1,82 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reactions_WhenInDash.c                             :+:      :+:    :+:   */
+/*   reactions_WhenInDash2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/09 13:52:54 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/09 13:52:55 by mberraho         ###   ########.fr       */
+/*   Created: 2026/02/10 21:42:22 by mberraho          #+#    #+#             */
+/*   Updated: 2026/02/11 16:44:48 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// In InDash
-void	letterWhenInDash(contextState *currState)
-{
-	printf("============================================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toInOptionState(currState);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
-}
-
-void	otherWhenInDash(contextState *currState)
-{
-	letterWhenInStart(currState);
-}
-
-void	spaceWhenInDash(contextState *currState)
-{
-	printf("============================================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toInInvalidState(currState);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
-}
-
-void	digitWhenInDash(contextState *currState)
+void	digit_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (currState->nber_dash == 1)
 	{
 		currState->start_number = currState->addr_first_dash;
-		toInNumberState(currState);
+		toin_number_state(currState, mystates);
 		currState->nber_dash = 0;
 	}
 	else if (currState->nber_dash == 0)
 	{
 		currState->start_number;
-		toInNumberState(currState);
+		toin_number_state(currState, mystates);
 		currState->nber_dash = 0;
 	}
 	else
-		toInInvalidState(currState);
+		toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	// reset dash counter to 0
 	printf("============================================\n");
 }
 
-void	dashWhenInDash(contextState *currState)
+void	dash_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (currState->nber_dash < 2)
 	{
-		toInDashState(currState);
+		toin_dash_state(currState, mystates);
 	}
 	else
-		toInInvalidState(currState);
+		toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	printf("============================================\n");
 }
 
-void	endWhenInDash(contextState *currState)
+void	end_when_in_dash(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toInInvalidState(currState);
+	toin_invalid_state(currState, mystates);
 	printf("============================================\n");
 }
