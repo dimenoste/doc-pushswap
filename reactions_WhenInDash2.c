@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:42:22 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 16:44:48 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:58:02 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	digit_when_in_dash(t_context_state *currState,
 	}
 	else if (currState->nber_dash == 0)
 	{
-		currState->start_number;
+		currState->start_number = currState->addr_first_dash; // pas sur
 		toin_number_state(currState, mystates);
 		currState->nber_dash = 0;
 	}
