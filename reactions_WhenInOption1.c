@@ -6,14 +6,15 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:28:43 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 22:50:05 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:55:04 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // In OptionState
-void	letter_when_in_option(t_context_state *currState, t_implement_handlers *mystates)
+void	letter_when_in_option(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
@@ -22,7 +23,8 @@ void	letter_when_in_option(t_context_state *currState, t_implement_handlers *mys
 	printf("============================================\n");
 }
 
-void	other_when_in_option(t_context_state *currState, t_implement_handlers *mystates)
+void	other_when_in_option(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
 	printf("============================================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
@@ -31,10 +33,11 @@ void	other_when_in_option(t_context_state *currState, t_implement_handlers *myst
 	printf("============================================\n");
 }
 
-void	space_when_in_option(t_context_state *currState, t_implement_handlers *mystates)
+void	space_when_in_option(t_context_state *currState,
+		t_implement_handlers *mystates)
 {
-	int		is_option_found;
-	int		is_bench_found;
+	int	is_option_found;
+	int	is_bench_found;
 
 	is_option_found = -1;
 	is_bench_found = -1;

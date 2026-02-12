@@ -6,14 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/12 12:43:05 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:56:16 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <unistd.h>
-
 
 void	init_vars_patol(t_vars_ft_patols *vars)
 {
@@ -22,6 +21,15 @@ void	init_vars_patol(t_vars_ft_patols *vars)
 	vars->n = 0;
 	vars->sign = 1;
 }
+
+int	is_digit_within_limits(char *s, t_vars_ft_patols *vars)
+{
+	return (((vars->n > (vars->max - (int)(s[vars->i] - '0')) / 10)
+			&& vars->sign == 1) || ((vars->n > (vars->max - (int)(s[vars->i]
+						- '1')) / 10) && vars->sign == -1) || (s[vars->i] < 48
+			|| s[vars->i] > 57));
+}
+
 t_number	ft_patol(char *s)
 {
 	t_vars_ft_patols	*vars;
@@ -40,10 +48,7 @@ t_number	ft_patol(char *s)
 	while (s[vars->i] != '\0' && s[vars->i] != ' ')
 	{
 		printf("from ft_patol, current char  is |%c|\n", s[vars->i]);
-		if (((vars->n > (vars->max - (int)(s[vars->i] - '0')) / 10)
-				&& vars->sign == 1) || ((vars->n > (vars->max - (int)(s[vars->i]
-							- '1')) / 10) && vars->sign == -1) || (s[vars->i] < 48
-				|| s[vars->i] > 57))
+		if (is_digit_within_limits(s, vars))
 		{
 			printf("from ft_patol, error case :  ccurrent char  is |%c|\n",
 				s[vars->i]);

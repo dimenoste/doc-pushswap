@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 17:52:03 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 15:20:04 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:51:43 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_implement_handlers	*init_state_space(t_implement_handlers *mystates)
 	mystates->in_space_state->handler_end = &end_when_in_space;
 	return (mystates);
 }
+
 t_implement_handlers	*init_state_option(t_implement_handlers *mystates)
 {
 	mystates->in_option_state->handler_letter = &letter_when_in_option;
