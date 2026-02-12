@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   test_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:07 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 22:40:24 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:05:10 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 	t_context_state			parser;
 	t_implement_handlers	mystates;
 
+	printf("======= TEST PARSER ============\n");
 	i = 1;
 	if (argc < 2)
 		return (0);
