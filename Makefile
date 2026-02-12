@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/12 19:24:08 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/12 19:30:35 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,7 +126,7 @@ help:
 	@echo -e ${YELLOW}Targets disponibles :${NC}
 	@echo "  make            - Build push_swap (quand main.c existera)"
 	@echo "  make test_ops   - Compile et lance les tests operations"
-	@echo "  make test_parser   - Compile et lance les tests du"
+	@echo "  make test_parser   - Compile et lance les tests du parser"
 	@echo "  make valgrind   - Test operations avec valgrind"
 	@echo "  make clean      - Supprime les .o"
 	@echo "  make fclean     - Supprime tout (clean + executables)"
@@ -140,6 +140,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME) $(NAME_OP_TEST) $(NAME_PARSER_TEST)
 	@echo -e ${GREEN}✓ Executables supprimes${NC}
-re: clean fclean all
+	
+re: fclean all
 
 .PHONY: all clean fclean re test_ops test_parser valgrind norm help
