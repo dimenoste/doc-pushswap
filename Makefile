@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/11 22:45:00 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/12 16:07:15 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,32 +16,41 @@ NAME_PARSER_TEST = test_parser
 
 OBJ_DIR = obj
 
-
+# fichiers sources de la stack
 STACK_SRCS = stack_init.c \
              stack_ops.c \
              stack_helpers.c
 
-
+# fichiers sources des operations
 OPS_SRCS = operations_swap.c \
            operations_rotate.c \
            operations_list.c
 
-# [TODO] Ajoute ici les fichiers du parser au fur et a mesure
+# fichiers sources du parser
 PARSER_SRCS = initialize_parser.c \
-              reactions_WhenInNumber.c \
-              utils_parsing.c
-#             reactions_WhenInStart1.c \
-#             reactions_WhenInStart2.c \
-#             ... etc.
+			transitions_functions_parsing.c \
+			utils_parsing.c \
+			iniatize_states1.c \
+			iniatize_states2.c \
+			reactions_WhenInDash1.c \
+			reactions_WhenInInvalid.c \
+			reactions_WhenInNumber2.c \
+			reactions_WhenInOption2.c \
+			reactions_WhenInSpace2.c \
+			reactions_WhenInStart2.c \
+			reactions_WhenInDash2.c \
+			reactions_WhenInNumber1.c \
+			reactions_WhenInOption1.c \
+			reactions_WhenInSpace1.c \
+			reactions_WhenInStart1.c
 
 # --- Module Disorder : calcul du desordre pour la strategie adaptive ---
 #TODO
 # DISORDER_SRCS = disorder.c
 
-
 MAIN_PUSH_SWAP   = main.c
-MAIN_OP_TEST     = test_main.c
-MAIN_PARSER_TEST = parser.c
+MAIN_OP_TEST     = test_operations.c
+MAIN_PARSER_TEST = test_parser.c
 
 # Sources pour chaque executable
 SRCS_PUSH_SWAP   = $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PUSH_SWAP)
