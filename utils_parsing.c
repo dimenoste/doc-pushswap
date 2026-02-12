@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/10 22:09:33 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:43:05 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_number	ft_patol(char *s)
 
 	output.error = 1;
 	output.number = 0;
+	vars = NULL;
 	init_vars_patol(vars);
 	printf("from ft_patol, number to process  is |%s|\n", s);
 	if (s[vars->i] == '-')
@@ -38,11 +39,11 @@ t_number	ft_patol(char *s)
 	}
 	while (s[vars->i] != '\0' && s[vars->i] != ' ')
 	{
-		printf("from ft_patol, current char  is |%c|\n", s[i]);
-		if (((vars->n > (vars->max - (int)(s[i] - '0')) / 10)
-				&& vars->sign == 1) || ((vars->n > (vars->max - (int)(s[i]
-							- '1')) / 10) && vars->sign == -1) || (s[i] < 48
-				|| s[i] > 57))
+		printf("from ft_patol, current char  is |%c|\n", s[vars->i]);
+		if (((vars->n > (vars->max - (int)(s[vars->i] - '0')) / 10)
+				&& vars->sign == 1) || ((vars->n > (vars->max - (int)(s[vars->i]
+							- '1')) / 10) && vars->sign == -1) || (s[vars->i] < 48
+				|| s[vars->i] > 57))
 		{
 			printf("from ft_patol, error case :  ccurrent char  is |%c|\n",
 				s[vars->i]);
@@ -51,7 +52,7 @@ t_number	ft_patol(char *s)
 		vars->n = vars->n * 10 + (int)(s[vars->i] - '0');
 		vars->i++;
 	}
-	printf("from ft_patol, output number is |%d|\n", output.number);
+	printf("from ft_patol, output number is |%ld|\n", output.number);
 	output.number = vars->sign * vars->n;
 	output.error = 0;
 	return (output);
@@ -96,11 +97,9 @@ char	*get_strat_selector(char *s)
 
 char	*get_bench_selector(char *s)
 {
-	int		i;
 	char	*bench;
 
 	bench = "--bench";
-	i = 0;
 	printf("== FROM get_bench_selector ==, s passed is :%s\n", s);
 	if (ft_strcmp_space(s, bench) == 1)
 	{
