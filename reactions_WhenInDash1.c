@@ -6,36 +6,32 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:52:54 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/12 12:52:51 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 21:18:50 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // In InDash
-void	letter_when_in_dash(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	letter_when_in_dash(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("================= letter_when_in_dash ===========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_option_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("==================== letter_when_in_dash ========================\n");
 }
 
-void	other_when_in_dash(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	other_when_in_dash(t_context *currState, t_states *mystates)
 {
 	letter_when_in_start(currState, mystates);
 }
 
-void	space_when_in_dash(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	space_when_in_dash(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("=================== space_when_in_dash=========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("===================== space_when_in_dash =======================\n");
 }
-

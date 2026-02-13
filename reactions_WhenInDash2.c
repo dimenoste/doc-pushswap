@@ -6,16 +6,15 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:42:22 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 22:58:02 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 22:20:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	digit_when_in_dash(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	digit_when_in_dash(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("================== digit_when_in_dash ==========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (currState->nber_dash == 1)
 	{
@@ -25,7 +24,7 @@ void	digit_when_in_dash(t_context_state *currState,
 	}
 	else if (currState->nber_dash == 0)
 	{
-		currState->start_number = currState->addr_first_dash; // pas sur
+		currState->start_number = currState->start_number; // pas sur
 		toin_number_state(currState, mystates);
 		currState->nber_dash = 0;
 	}
@@ -33,13 +32,12 @@ void	digit_when_in_dash(t_context_state *currState,
 		toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	// reset dash counter to 0
-	printf("============================================\n");
+	printf("======================= digit_when_in_dash =====================\n");
 }
 
-void	dash_when_in_dash(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	dash_when_in_dash(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("===================== dash_when_in_dash =======================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (currState->nber_dash < 2)
 	{
@@ -48,14 +46,13 @@ void	dash_when_in_dash(t_context_state *currState,
 	else
 		toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("===================== dash_when_in_dash =======================\n");
 }
 
-void	end_when_in_dash(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	end_when_in_dash(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("==================== end_when_in_dash  ========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
-	printf("============================================\n");
+	printf("====================== end_when_in_dash ======================\n");
 }

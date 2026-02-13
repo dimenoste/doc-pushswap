@@ -1,47 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_state2.c                                :+:      :+:    :+:   */
+/*   init_states2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 18:00:16 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 22:44:07 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 20:29:43 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_implement_handlers	*init_state_invalid(t_implement_handlers *mystates)
+t_state_interface	*init_option_state(void)
 {
-	mystates->in_invalid_state->handler_letter = &stay_in_invalid;
-	return (mystates);
-}
+	t_state_interface	*ptr_in_option_state;
 
-t_implement_handlers	*init_state_success(t_implement_handlers *mystates)
-{
-	mystates->in_success_state->handler_letter = &to_end_success;
-	return (mystates);
-}
-
-t_implement_handlers	*init_states(void)
-{
-	t_implement_handlers	*mystates;
-
-	mystates = malloc(sizeof(t_implement_handlers));
-	if (!mystates)
+	ptr_in_option_state = malloc(sizeof(t_state_interface));
+	if (!ptr_in_option_state)
 		return (NULL);
-	mystates = init_state_start(mystates);
-	mystates = init_state_dash(mystates);
-	mystates = init_state_option(mystates);
-	mystates = init_state_space(mystates);
-	mystates = init_state_invalid(mystates);
-	mystates = init_state_number(mystates);
-	mystates = init_state_success(mystates);
-	return (mystates);
+	ptr_in_option_state->handler_letter = &letter_when_in_option;
+	ptr_in_option_state->handler_space = &space_when_in_option;
+	ptr_in_option_state->handler_digit = &digit_when_in_option;
+	ptr_in_option_state->handler_dash = &dash_when_in_option;
+	ptr_in_option_state->handler_other = &other_when_in_option;
+	ptr_in_option_state->handler_end = &end_when_in_option;
+	return (NULL);
 }
 
-void	free_mystates(t_implement_handlers *mystates)
+t_state_interface	*init_invalid_state(void)
+{
+	t_state_interface	*ptr_in_invalid_state;
+
+	ptr_in_invalid_state = malloc(sizeof(t_state_interface));
+	if (!ptr_in_invalid_state)
+		return (NULL);
+	ptr_in_invalid_state->handler_letter = &stay_in_invalid;
+	return (ptr_in_invalid_state);
+}
+
+t_state_interface	*init_success_state(void)
+{
+	t_state_interface	*ptr_in_success_state;
+
+	ptr_in_success_state = malloc(sizeof(t_state_interface));
+	if (!ptr_in_success_state)
+		return (NULL);
+	ptr_in_success_state->handler_letter = &to_end_success;
+	return (ptr_in_success_state);
+}
+
+void	free_mystates(t_states *mystates)
 {
 	if (mystates)
 		free(mystates);

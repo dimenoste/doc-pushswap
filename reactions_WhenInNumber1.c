@@ -6,39 +6,36 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:30:19 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 16:44:48 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 21:19:52 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // In in_number_state
-void	letter_when_in_number(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	letter_when_in_number(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("================== letter_when_in_number==========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("=================== letter_when_in_number =========================\n");
 }
 
-void	other_when_in_number(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	other_when_in_number(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("================ other_when_in_number ============================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("==================== other_when_in_number ========================\n");
 }
 
-void	space_when_in_number(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	space_when_in_number(t_context *currState, t_states *mystates)
 {
 	t_number	result;
 
-	printf("============================================\n");
+	printf("================ space_when_in_number ============================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	printf("from space_when_in_number, start number is  : %s\n",
 		currState->start_number);
@@ -53,5 +50,5 @@ void	space_when_in_number(t_context_state *currState,
 		toin_invalid_state(currState, mystates);
 	// add number to linked list
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("==================== space_when_in_number ========================\n");
 }

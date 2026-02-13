@@ -6,38 +6,34 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:52:37 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/11 22:44:07 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 21:21:57 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	digit_when_in_start(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	digit_when_in_start(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("==================== digit_when_in_start ========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_number_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("====================== digit_when_in_start ======================\n");
 }
 
-void	dash_when_in_start(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	dash_when_in_start(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("=================== dash_when_in_start =========================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_dash_state(currState, mystates);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("============================================\n");
+	printf("====================== dash_when_in_start ======================\n");
 }
 
-void	end_when_in_start(t_context_state *currState,
-		t_implement_handlers *mystates)
+void	end_when_in_start(t_context *currState, t_states *mystates)
 {
-	printf("============================================\n");
+	printf("=============== end_when_in_start  =============================\n");
 	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("end has been reached : END OF PROGRAM\n");
 	to_end_success(currState, mystates);
-	printf("============================================\n");
+	printf("===================== end_when_in_start =======================\n");
 }

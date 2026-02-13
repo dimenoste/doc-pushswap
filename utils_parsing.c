@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/12 12:56:16 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 22:43:12 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,52 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	init_vars_patol(t_vars_ft_patols *vars)
+t_vars_ft_patols	init_vars_patol(void)
 {
-	vars->max = 2147483647;
-	vars->i = 0;
-	vars->n = 0;
-	vars->sign = 1;
+	t_vars_ft_patols	vars;
+
+	vars.max = 2147483647;
+	vars.i = 0;
+	vars.n = 0;
+	vars.sign = 1;
+	return (vars);
 }
 
-int	is_digit_within_limits(char *s, t_vars_ft_patols *vars)
+int	is_digit_within_limits(char *s, t_vars_ft_patols vars)
 {
-	return (((vars->n > (vars->max - (int)(s[vars->i] - '0')) / 10)
-			&& vars->sign == 1) || ((vars->n > (vars->max - (int)(s[vars->i]
-						- '1')) / 10) && vars->sign == -1) || (s[vars->i] < 48
-			|| s[vars->i] > 57));
+	return (((vars.n > (vars.max - (int)(s[vars.i] - '0')) / 10)
+			&& vars.sign == 1) || ((vars.n > (vars.max - (int)(s[vars.i] - '1'))
+				/ 10) && vars.sign == -1) || (s[vars.i] < 48
+			|| s[vars.i] > 57));
 }
 
 t_number	ft_patol(char *s)
 {
-	t_vars_ft_patols	*vars;
+	t_vars_ft_patols	vars;
 	t_number			output;
 
 	output.error = 1;
 	output.number = 0;
-	vars = NULL;
-	init_vars_patol(vars);
+	vars = init_vars_patol();
 	printf("from ft_patol, number to process  is |%s|\n", s);
-	if (s[vars->i] == '-')
+	if (s[vars.i] == '-')
 	{
-		vars->sign = -1;
-		vars->i += 1;
+		vars.sign = -1;
+		vars.i += 1;
 	}
-	while (s[vars->i] != '\0' && s[vars->i] != ' ')
+	while (s[vars.i] != '\0' && s[vars.i] != ' ')
 	{
-		printf("from ft_patol, current char  is |%c|\n", s[vars->i]);
+		printf("from ft_patol, current char  is |%c|\n", s[vars.i]);
 		if (is_digit_within_limits(s, vars))
 		{
 			printf("from ft_patol, error case :  ccurrent char  is |%c|\n",
-				s[vars->i]);
+				s[vars.i]);
 			return (output);
 		}
-		vars->n = vars->n * 10 + (int)(s[vars->i] - '0');
-		vars->i++;
+		vars.n = vars.n * 10 + (int)(s[vars.i] - '0');
+		vars.i++;
 	}
-	printf("from ft_patol, output number is |%ld|\n", output.number);
-	output.number = vars->sign * vars->n;
+	output.number = vars.sign * vars.n;
 	output.error = 0;
 	return (output);
 }

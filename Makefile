@@ -6,9 +6,16 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/12 19:30:35 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/13 22:20:35 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
+# TODO
+# ajouter .d
+# ajouter -M
+# ajouter differents .h differents seln les dossiers 
+# https://stackoverflow.com/questions/19114410/what-is-d-file-after-building-with-make
 
 NAME            = push_swap
 NAME_OP_TEST    = operations
@@ -92,17 +99,14 @@ $(NAME_OP_TEST): $(OBJS_OP_TEST)
 
 # --- Compilation du test du parser ---
 $(NAME_PARSER_TEST): $(OBJS_PARSER_TEST)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_PARSER_TEST) -o $(NAME_PARSER_TEST)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_PARSER_TEST) -g -O0 -o $(NAME_PARSER_TEST)
 	@echo -e ${GREEN}✓ $(NAME_PARSER_TEST) compile !${NC}
 
 # general push_swap dir of .o
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "$(GREEN)✓ Compiled: $<$(NC)"
-
-
-
+	@echo -e ${GREEN}✓ Compiled: $<${NC}
 
 # lance le test des operations
 test_ops: $(NAME_OP_TEST)
@@ -112,7 +116,8 @@ test_ops: $(NAME_OP_TEST)
 # lance le test du parser
 test_parser: $(NAME_PARSER_TEST)
 	@echo -e ${YELLOW}Lancement des tests parser...${NC}
-	@./$(NAME_PARSER_TEST)
+	@./$(NAME_PARSER_TEST) 1 2 3
+	@echo -e ${GREEN}Le parser marche...${NC}
 
 # Valgrind sur le test des operations
 valgrind: $(NAME_OP_TEST)
@@ -120,7 +125,7 @@ valgrind: $(NAME_OP_TEST)
 	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME_OP_TEST)
 
 norm:
-	@norminette *.c *.h || true
+	@norminette $(SRCS_PUSH_SWAP)
 
 help:
 	@echo -e ${YELLOW}Targets disponibles :${NC}
