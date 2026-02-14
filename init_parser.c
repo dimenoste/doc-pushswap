@@ -6,13 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:41:38 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/13 22:56:37 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 20:06:57 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_context	*init_parser(t_states *mystates, char *s)
+t_context	*init_parser(t_states *mystates, char *s, t_stack *stk)
 {
 	t_context	*ptr_parser;
 
@@ -29,5 +29,6 @@ t_context	*init_parser(t_states *mystates, char *s)
 	ptr_parser->nber_dash = 0;
 	ptr_parser->start_number = NULL;
 	ptr_parser->option_found = NULL;
+	ptr_parser->stack_A = stk;
 	return (ptr_parser);
 }

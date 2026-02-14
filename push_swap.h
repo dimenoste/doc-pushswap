@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/13 20:26:02 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 20:06:49 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct implement_handlers	t_states;
 typedef enum state_name				t_enum_state_name;
 typedef struct s_interface			t_state_interface;
+typedef struct s_stack				t_stack;
 
 //////////STATE MACHINE FOR PARSING///////////
 typedef enum state_name
@@ -45,10 +46,12 @@ typedef struct s_ctx
 	int								candidate_number;
 	char							*bench_found;
 	int								nber_dash;
+	t_stack							*stack_A;
 }									t_context;
 
 // initialize the struct parser
-t_context							*init_parser(t_states *mystates, char *s);
+t_context							*init_parser(t_states *mystates, char *s,
+										t_stack *stk);
 
 // 2) State Interface
 typedef struct s_interface
@@ -285,5 +288,8 @@ size_t								stack_length(t_stack *stk);
 long								stack_top_peek(t_stack *stk);
 t_node								*stack_last(t_stack *stk);
 t_node								*stack_first(t_stack *stk);
+// print stack function
+void								print_stack(t_stack *stack,
+										const char *name);
 
 #endif

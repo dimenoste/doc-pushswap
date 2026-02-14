@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/13 22:57:05 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/14 21:02:15 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ STACK_SRCS = stack_init.c \
 # fichiers sources des operations
 OPS_SRCS = operations_swap.c \
            operations_rotate.c \
-           operations_list.c
+           operations_list.c \
+		   stack_utils.c
 
 # fichiers sources du parser
 PARSER_SRCS = init_parser.c \
@@ -117,7 +118,14 @@ test_ops: $(NAME_OP_TEST)
 # lance le test du parser
 test_parser: $(NAME_PARSER_TEST)
 	@echo -e ${YELLOW}Lancement des tests parser...${NC}
+	@echo -e ${YELLOW}.........Test...........${NC}
 	@./$(NAME_PARSER_TEST) 1 2 3
+	@echo -e ${YELLOW}.........Test...........${NC}
+	@./$(NAME_PARSER_TEST) --simple 1 2 3
+	@echo -e ${YELLOW}.........Test...........${NC}
+	@./$(NAME_PARSER_TEST) l 1 2 3
+	@echo -e ${YELLOW}.........Test...........${NC}
+	@./$(NAME_PARSER_TEST)
 	@echo -e ${GREEN}Le parser marche...${NC}
 
 # Valgrind sur le test des operations

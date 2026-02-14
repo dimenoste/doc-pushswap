@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.c                                        :+:      :+:    :+:   */
+/*   test_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 19:30:00 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/03 19:10:38 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/02/14 18:45:14 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 // === CECI EST UN FICHIER TEST POUR VERIFIER SI TOUTES LES OPERATIONS MARCHENT==
-// JE NE L'AI PAS ECRIT 
-// ON VA REPARLER DE L'IMPLEMENTATION DE PRINTF DU PARSING ETC SI ON SE CROISE 
+// JE NE L'AI PAS ECRIT
+// ON VA REPARLER DE L'IMPLEMENTATION DE PRINTF DU PARSING ETC SI ON SE CROISE
 #include "push_swap.h"
 #include <stdio.h>
 #include <string.h>
@@ -41,30 +40,6 @@ void	print_test_result(const char *test_name, int passed)
 		printf("%s[✗]%s %s\n", RED, NC, test_name);
 		g_tests_failed++;
 	}
-}
-
-void	print_stack(t_stack *stack, const char *name)
-{
-	t_node	*current;
-	size_t	i;
-
-	printf("%s[Stack %s, length=%zu]: ", BLUE, name, stack->length);
-	if (is_empty_stack(stack))
-	{
-		printf("(empty)%s\n", NC);
-		return ;
-	}
-	current = stack->head;
-	i = 0;
-	while (i < stack->length)
-	{
-		printf("%ld", current->value);
-		if (i < stack->length - 1)
-			printf(" → ");
-		current = current->next;
-		i++;
-	}
-	printf("%s\n", NC);
 }
 
 void	test_stack_creation(void)
@@ -241,17 +216,15 @@ void	test_combined_operations(void)
 	printf("Initial state:\n");
 	print_stack(a, "A");
 	print_stack(b, "B");
-	push(a, b, ops);  // A:[2,1]  B:[3]
-	push(a, b, ops);  // A:[1]    B:[2,3]
-	swap(b, ops);     // A:[1]    B:[3,2]
-	push(b, a, ops);  // A:[3,1]  B:[2]
+	push(a, b, ops); // A:[2,1]  B:[3]
+	push(a, b, ops); // A:[1]    B:[2,3]
+	swap(b, ops);    // A:[1]    B:[3,2]
+	push(b, a, ops); // A:[3,1]  B:[2]
 	printf("\nAfter operations (pb, pb, sb, pa):\n");
 	print_stack(a, "A");
 	print_stack(b, "B");
-
-	print_test_result("Operations sequence correct",
-		a->head->value == 3 && b->head->value == 2);  /* ← Corrigé */
-
+	print_test_result("Operations sequence correct", a->head->value == 3
+		&& b->head->value == 2); /* ← Corrigé */
 	printf("\nOperations recorded:\n");
 	print_operations(ops);
 	clear_stack(&a);

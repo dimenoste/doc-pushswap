@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:07 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/14 17:59:53 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 20:08:38 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,45 +23,42 @@ void	print_current_state(t_context *ptr_parser)
 	printf("bench  found is : %s\n", ptr_parser->bench_found);
 }
 
-int	main(int argc, char *argv[])
+int	parse_args(int argc, char *argv[], t_stack *stk)
 {
-	int			i;
 	t_context	*ptr_parser;
 	t_states	*mystates;
+	int			i;
 
-	printf("======= TEST PARSER ============\n");
 	i = 1;
-	if (argc < 2)
-		return (0);
 	mystates = init_states();
-	// need to free the mallocs
 	while (i < argc)
 	{
-		ptr_parser = init_parser(mystates, argv[i]);
+		ptr_parser = init_parser(mystates, argv[i], stk);
 		while (1)
 		{
 			classify_input(ptr_parser, mystates);
 			if ((ptr_parser->name_state == InInvalid))
 			{
-				printf("INVALID STATE REACHED AT END FOR ARG %s\n", argv[i]);
+				clear_stack(&stk);
 				return (0);
 			}
 			else if ((ptr_parser->name_state == InSuccess))
-			{
-				printf("SUCCESS STATE REACHED AT END FOR ARG %s\n", argv[i]);
 				break ;
-			}
 			print_current_state(ptr_parser);
 			(ptr_parser->mystring)++;
 		}
 		i++;
 	}
-	// printf("out of loop current state : %s\n",
-	// 	get_state_name(ptr_parser->name_state));
-	// print_current_state(ptr_parser);
-	// // if ((parser.option_found) || (parser.name_state == InInvalid))
-	// // 	printf("error");
-	// free_mystates(mystates);
-	// // need to free parser mallocs
+	return (1);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_stack	*stk;
+
+	stk = new_stack(A);
+	if (argc < 2 || (parse_args(argc, argv, stk) == 0))
+		return (0);
+	clear_stack(&stk);
 	return (0);
 }
