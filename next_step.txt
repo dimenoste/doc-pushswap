@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    next_step.txt                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+         #
+#    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/03 19:30:58 by yasmine.aichi     #+#    #+#              #
-#    Updated: 2026/02/03 19:34:34 by yasmine.aichi    ###   ########.fr        #
+#    Created: 2026/02/03 19:30:58 by yasmine.aic       #+#    #+#              #
+#    Updated: 2026/02/14 22:50:58 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,3 +20,6 @@ je me charge du complex cxar j'aimerais implementer merge sort plutot que radix
 
 on doit aussi implementer printf j'ai mis le mien en attendant et ya une fonction print operations qui sert en attendant mais elle est tres mauvaise.
 
+
+feb 14 :
+recupere bien la liste, sors bien a l etat invalide, rest a faire une fonction pour tout free en cas d'erreur
