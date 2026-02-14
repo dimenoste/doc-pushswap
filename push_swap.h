@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/14 20:06:49 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 22:26:45 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ typedef enum state_name
 	InSuccess
 }									t_enum_state_name;
 
+typedef struct s_result_parsing
+{
+	t_enum_state_name				name_state;
+	char							*option_found;
+	char							*bench_found;
+	t_stack							*stack_A;
+}									t_output_parsing;
+
 // 1) Context
 typedef struct s_ctx
 {
@@ -50,8 +58,8 @@ typedef struct s_ctx
 }									t_context;
 
 // initialize the struct parser
-t_context							*init_parser(t_states *mystates, char *s,
-										t_stack *stk);
+t_context							*init_parser_arg(t_states *mystates,
+										char *s, t_stack *stk);
 
 // 2) State Interface
 typedef struct s_interface

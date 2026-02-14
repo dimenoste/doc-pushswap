@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/13 22:43:12 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 22:47:41 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ int	ft_strcmp_space(char *s1, char *s2)
 char	*get_strat_selector(char *s)
 {
 	int		i;
-	char	*strats[5] = {"--simple", "--medium", "--complex", "--adaptive", 0};
+	char	*strats[] = {"--simple", "--medium", "--complex", "--adaptive"};
 
 	i = 0;
 	printf("== FROM get_strat_selector ==, s passed is :%s\n", s);
-	while (strats[i] != 0)
+	while (strats[i])
 	{
 		if (ft_strcmp_space(s, strats[i]) == 1)
 		{

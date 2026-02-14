@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:53:44 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/13 18:38:15 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 22:45:42 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	extract_bench_in_state(t_context *currState)
 	if (!currState->bench_found && candidate_bench)
 	{
 		currState->bench_found = candidate_bench;
-		printf("option found is  : %s\n", currState->bench_found);
+		printf("bench found is  : %s\n", currState->bench_found);
 		return (1);
 	}
 	else

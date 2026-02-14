@@ -6,13 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:41:38 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/14 20:06:57 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/14 22:00:40 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_context	*init_parser(t_states *mystates, char *s, t_stack *stk)
+t_context	*init_parser_arg(t_states *mystates, char *s, t_stack *stk)
 {
 	t_context	*ptr_parser;
 

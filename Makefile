@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/14 21:02:15 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/14 21:04:41 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,8 @@ test_parser: $(NAME_PARSER_TEST)
 	@./$(NAME_PARSER_TEST) l 1 2 3
 	@echo -e ${YELLOW}.........Test...........${NC}
 	@./$(NAME_PARSER_TEST)
+	@echo -e ${YELLOW}.........Test...........${NC}
+	@./$(NAME_PARSER_TEST) --simple
 	@echo -e ${GREEN}Le parser marche...${NC}
 
 # Valgrind sur le test des operations
