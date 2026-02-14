@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 18:00:16 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/13 20:29:43 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 23:09:50 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_state_interface	*init_option_state(void)
 	ptr_in_option_state->handler_dash = &dash_when_in_option;
 	ptr_in_option_state->handler_other = &other_when_in_option;
 	ptr_in_option_state->handler_end = &end_when_in_option;
-	return (NULL);
+	return (ptr_in_option_state);
 }
 
 t_state_interface	*init_invalid_state(void)

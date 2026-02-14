@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/13 22:20:35 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/13 22:57:05 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ PARSER_SRCS = init_parser.c \
 	reactions_WhenInSpace2.c \
 	reactions_WhenInOption1.c \
 	reactions_WhenInOption2.c \
-	reactions_WhenInInvalid.c
+	reactions_WhenInInvalid.c \
+	classify_input.c
 
 # --- Module Disorder : calcul du desordre pour la strategie adaptive ---
 #TODO

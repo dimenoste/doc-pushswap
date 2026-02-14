@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 17:52:03 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/13 20:30:20 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/13 23:00:49 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ t_state_interface	*init_dash_state(void)
 	ptr_in_dash_state = malloc(sizeof(t_state_interface));
 	if (!ptr_in_dash_state)
 		return (NULL);
-	ptr_in_dash_state->handler_letter = &letter_when_in_start;
-	ptr_in_dash_state->handler_space = &space_when_in_start;
-	ptr_in_dash_state->handler_digit = &digit_when_in_start;
-	ptr_in_dash_state->handler_dash = &dash_when_in_start;
-	ptr_in_dash_state->handler_other = &other_when_in_start;
-	ptr_in_dash_state->handler_end = &end_when_in_start;
+	ptr_in_dash_state->handler_letter = &letter_when_in_dash;
+	ptr_in_dash_state->handler_space = &space_when_in_dash;
+	ptr_in_dash_state->handler_digit = &digit_when_in_dash;
+	ptr_in_dash_state->handler_dash = &dash_when_in_dash;
+	ptr_in_dash_state->handler_other = &other_when_in_dash;
+	ptr_in_dash_state->handler_end = &end_when_in_dash;
 	return (ptr_in_dash_state);
 }
 
