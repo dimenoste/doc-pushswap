@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:45:28 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/14 16:11:01 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 13:48:51 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ void	end_when_in_option(t_context *currState, t_states *mystates)
 	is_bench_found = extract_bench_in_state(currState);
 	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (is_option_found == 0 && is_bench_found == 0)
-	{
-		toin_invalid_state(currState, mystates);
-	}
-	else if (!currState->option_found)
 	{
 		toin_invalid_state(currState, mystates);
 	}

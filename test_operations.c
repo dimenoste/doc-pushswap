@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/14 18:45:14 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 15:31:21 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,30 +255,57 @@ void	test_edge_cases(void)
 	clear_op_list(&ops);
 }
 
+void	test_is_node_unique(void)
+{
+	t_stack	*a;
+	t_node	*node1;
+	t_node	*node2;
+	t_node	*node3;
+	t_node	*node4;
+
+	printf("\n%s=== TEST 10: Node Operations ===%s\n", YELLOW, NC);
+	a = new_stack(A);
+	node1 = new_node(-56);
+	node2 = new_node(12);
+	node3 = new_node(0);
+	node4 = new_node(42);
+	print_test_result("adding a new node, is it unique?", is_node_unique(a,
+			node1));
+	print_test_result("adding a new node, is it unique?", is_node_unique(a,
+			node2));
+	print_test_result("adding a new node, is it unique?", is_node_unique(a,
+			node3));
+	print_test_result("adding a new node, is it unique?", is_node_unique(a,
+			node4));
+	print_stack(a, "A");
+	clear_stack(&a);
+}
+
 int	main(void)
 {
 	printf("%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
-	printf("║        PUSH SWAP - Test Suite                 ║\n");
-	printf("║        Data Structure Validation              ║\n");
+	printf("║        PUSH SWAP - Test Suite                  ║\n");
+	printf("║        Data Structure Validation               ║\n");
 	printf("╚════════════════════════════════════════════════╝\n");
 	printf("%s\n", NC);
-	test_stack_creation();
-	test_node_operations();
-	test_pop_operation();
-	test_swap_operation();
-	test_push_operation();
-	test_rotate_operation();
-	test_reverse_rotate_operation();
-	test_combined_operations();
-	test_edge_cases();
+	// test_stack_creation();
+	// test_node_operations();
+	// test_pop_operation();
+	// test_swap_operation();
+	// test_push_operation();
+	// test_rotate_operation();
+	// test_reverse_rotate_operation();
+	// test_combined_operations();
+	// test_edge_cases();
+	test_is_node_unique();
 	printf("\n%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
-	printf("║              Test Results                     ║\n");
+	printf("║              Test Results                      ║\n");
 	printf("╠════════════════════════════════════════════════╣\n");
-	printf("║  %sPassed: %2d%s                                   ║\n", GREEN,
+	printf("║  %sPassed: %2d%s                                    ║\n", GREEN,
 		g_tests_passed, BLUE);
-	printf("║  %sFailed: %2d%s                                   ║\n", RED,
+	printf("║  %sFailed: %2d%s                                    ║\n", RED,
 		g_tests_failed, BLUE);
 	printf("╚════════════════════════════════════════════════╝\n");
 	printf("%s\n", NC);

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/14 18:48:41 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 15:36:38 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_stack(t_stack *stack, const char *name)
 {
-	t_node *current;
-	size_t i;
+	t_node	*current;
+	size_t	i;
 
 	printf("[Stack %s, length=%zu]: ", name, stack->length);
 	if (is_empty_stack(stack))
@@ -34,4 +34,25 @@ void	print_stack(t_stack *stack, const char *name)
 		i++;
 	}
 	printf("\n");
+}
+// add node to stack and return 1 or 0 if value in node is unique or not respectively
+int	is_node_unique(t_stack *stk, t_node *node)
+{
+	t_node *orig_head;
+	stack_add_back(stk, node);
+
+	if (!stk || !node)
+		return (0);
+	orig_head = stk->head;
+	while (stk->head != stk->tail)
+	{
+		if (stk->head->value == node->value)
+		{
+			stk->head = orig_head;
+			return (0);
+		}
+		stk->head = stk->head->next;
+	}
+	stk->head = orig_head;
+	return (1);
 }

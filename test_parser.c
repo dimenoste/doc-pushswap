@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:07 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/14 22:48:15 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 15:33:26 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int	parse_args(int argc, char *argv[])
 	}
 	return (1);
 }
-
-// validate_parser()
 
 int	main(int argc, char *argv[])
 {

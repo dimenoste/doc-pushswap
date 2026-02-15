@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 15:42:05 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/03 18:41:21 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/01/29 15:42:05 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/02/15 15:34:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/14 22:26:45 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 14:38:06 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,5 +299,7 @@ t_node								*stack_first(t_stack *stk);
 // print stack function
 void								print_stack(t_stack *stack,
 										const char *name);
+
+int									is_node_unique(t_stack *stk, t_node *node);
 
 #endif
