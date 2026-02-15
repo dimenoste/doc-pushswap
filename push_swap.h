@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/15 14:38:06 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:18:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ void								to_end_success(t_context *currState,
 typedef struct vars_ft_patol
 {
 	int								max;
+	int								min;
 	int								i;
 	int								n;
 	int								sign;

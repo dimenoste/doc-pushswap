@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 19:30:58 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/14 22:50:58 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/15 16:45:32 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,3 +23,12 @@ on doit aussi implementer printf j'ai mis le mien en attendant et ya une fonctio
 
 feb 14 :
 recupere bien la liste, sors bien a l etat invalide, rest a faire une fonction pour tout free en cas d'erreur
+
+
+feb 15:
+-- TRANSFORMWR LES INVALQuand Invalid => print Error avec fonction write sur la sortie 2
+
+Finir le programme si :
+- pas d'argument
+- si un seul chiffre
+- si la liste est deja ordonnee

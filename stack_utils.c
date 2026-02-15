@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 15:36:38 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 15:54:52 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	is_node_unique(t_stack *stk, t_node *node)
 	{
 		if (stk->head->value == node->value)
 		{
+			printf("Error\n");
+				// A GARDER EN Error a changer avec write sortie 2
 			stk->head = orig_head;
 			return (0);
 		}

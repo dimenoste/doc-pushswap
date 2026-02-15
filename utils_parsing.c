@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 13:43:41 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:29:28 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_vars_ft_patols	init_vars_patol(void)
 int	is_digit_within_limits(char *s, t_vars_ft_patols vars)
 {
 	return (((vars.n > (vars.max - (int)(s[vars.i] - '0')) / 10)
-			&& vars.sign == 1) || ((vars.n > (vars.max - (int)(s[vars.i] - '1'))
-				/ 10) && vars.sign == -1) || (s[vars.i] < 48
+			&& vars.sign == 1) || ((vars.n > (vars.max + 1 - (int)(s[vars.i]
+						- '0')) / 10) && vars.sign == -1) || (s[vars.i] < 48
 			|| s[vars.i] > 57));
 }
 
