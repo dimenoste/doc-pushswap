@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 15:54:52 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 19:37:36 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	print_stack(t_stack *stack, const char *name)
 	t_node	*current;
 	size_t	i;
 
-	printf("[Stack %s, length=%zu]: ", name, stack->length);
 	if (is_empty_stack(stack))
 	{
 		printf("empty stack\n");
 		return ;
 	}
+	printf("[Stack %s, length=%zu]: ", name, stack->length);
 	current = stack->head;
 	i = 0;
 	while (i < stack->length)
@@ -48,8 +48,8 @@ int	is_node_unique(t_stack *stk, t_node *node)
 	{
 		if (stk->head->value == node->value)
 		{
-			printf("Error\n");
-				// A GARDER EN Error a changer avec write sortie 2
+			printf("Error A GARDER EN Error a changer avec write sortie 2\n");
+			//
 			stk->head = orig_head;
 			return (0);
 		}

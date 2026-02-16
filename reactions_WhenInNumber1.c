@@ -6,28 +6,29 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:30:19 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/14 18:37:35 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 19:15:10 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // In in_number_state
-void	letter_when_in_number(t_context *currState, t_states *mystates)
-{
-	printf("================== letter_when_in_number==========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toin_invalid_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("=================== letter_when_in_number =========================\n");
+void	letter_when_in_number(t_context *currState, t_states *mystates) {
+  printf(
+      "================== letter_when_in_number==========================\n");
+  printf("current state is : %s\n", get_state_name(currState->name_state));
+  toin_invalid_state(currState, mystates);
+  printf("current state is : %s\n", get_state_name(currState->name_state));
+  printf(
+      "=================== letter_when_in_number =========================\n");
 }
 
-void	other_when_in_number(t_context *currState, t_states *mystates)
-{
-	printf("================ other_when_in_number ============================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	toin_invalid_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("==================== other_when_in_number ========================\n");
+void	other_when_in_number(t_context *currState, t_states *mystates) {
+  printf(
+      "================ other_when_in_number ============================\n");
+  printf("current state is : %s\n", get_state_name(currState->name_state));
+  toin_invalid_state(currState, mystates);
+  printf("current state is : %s\n", get_state_name(currState->name_state));
+  printf(
+      "==================== other_when_in_number ========================\n");
 }
-

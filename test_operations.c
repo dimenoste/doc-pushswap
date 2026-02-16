@@ -6,13 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/15 15:31:21 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 19:17:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// === CECI EST UN FICHIER TEST POUR VERIFIER SI TOUTES LES OPERATIONS MARCHENT==
-// JE NE L'AI PAS ECRIT
-// ON VA REPARLER DE L'IMPLEMENTATION DE PRINTF DU PARSING ETC SI ON SE CROISE
+// === CECI EST UN FICHIER TEST POUR VERIFIER SI TOUTES LES OPERATIONS
+// MARCHENT== JE NE L'AI PAS ECRIT ON VA REPARLER DE L'IMPLEMENTATION DE PRINTF
+// DU PARSING ETC SI ON SE CROISE
 #include "push_swap.h"
 #include <stdio.h>
 #include <string.h>
@@ -289,15 +289,15 @@ int	main(void)
 	printf("║        Data Structure Validation               ║\n");
 	printf("╚════════════════════════════════════════════════╝\n");
 	printf("%s\n", NC);
-	// test_stack_creation();
-	// test_node_operations();
-	// test_pop_operation();
-	// test_swap_operation();
-	// test_push_operation();
-	// test_rotate_operation();
-	// test_reverse_rotate_operation();
-	// test_combined_operations();
-	// test_edge_cases();
+	test_stack_creation();
+	test_node_operations();
+	test_pop_operation();
+	test_swap_operation();
+	test_push_operation();
+	test_rotate_operation();
+	test_reverse_rotate_operation();
+	test_combined_operations();
+	test_edge_cases();
 	test_is_node_unique();
 	printf("\n%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
@@ -305,8 +305,7 @@ int	main(void)
 	printf("╠════════════════════════════════════════════════╣\n");
 	printf("║  %sPassed: %2d%s                                    ║\n", GREEN,
 		g_tests_passed, BLUE);
-	printf("║  %sFailed: %2d%s                                    ║\n", RED,
-		g_tests_failed, BLUE);
+	printf("║  %sFailed: %2d%s ║\n", RED, g_tests_failed, BLUE);
 	printf("╚════════════════════════════════════════════════╝\n");
 	printf("%s\n", NC);
 	return (g_tests_failed == 0 ? 0 : 1);

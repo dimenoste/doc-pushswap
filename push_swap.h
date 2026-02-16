@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/15 16:18:56 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 19:14:05 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct s_ctx
 // initialize the struct parser
 t_context							*init_parser_arg(t_states *mystates,
 										char *s, t_stack *stk);
+int									validate_args(int argc, char *argv[],
+										t_output_parsing *output);
+void								run_parser(int argc, char *argv[]);
 
 // 2) State Interface
 typedef struct s_interface
@@ -300,7 +303,6 @@ t_node								*stack_first(t_stack *stk);
 // print stack function
 void								print_stack(t_stack *stack,
 										const char *name);
-
 int									is_node_unique(t_stack *stk, t_node *node);
 
 #endif

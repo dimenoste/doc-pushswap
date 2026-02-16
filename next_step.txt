@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 19:30:58 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/15 16:45:32 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/15 17:14:00 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,14 @@ recupere bien la liste, sors bien a l etat invalide, rest a faire une fonction p
 
 
 feb 15:
--- TRANSFORMWR LES INVALQuand Invalid => print Error avec fonction write sur la sortie 2
 
-Finir le programme si :
+Taches 
+1) -- TRANSFORMWR LES INVALQuand Invalid => print Error avec fonction write sur la sortie 2
+
+2) Finir le programme si :
 - pas d'argument
 - si un seul chiffre
 - si la liste est deja ordonnee
+
+
+3)Supprimer les objets initialise et lancer valgring !!

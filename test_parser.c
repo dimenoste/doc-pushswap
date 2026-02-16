@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:07 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 17:09:32 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/15 19:39:24 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,24 @@ void	update_output_parser(t_context *ptr_parser, t_output_parsing *output)
 	output->stack_A = ptr_parser->stack_A;
 }
 
-int	parse_args(int argc, char *argv[])
+int	validate_args(int argc, char *argv[], t_output_parsing *output)
 {
-	t_context			*ptr_parser;
-	t_states			*mystates;
-	int					i;
-	t_output_parsing	output;
+	t_context	*ptr_parser;
+	t_states	*mystates;
+	int			i;
 
-	output = init_output_parser();
 	i = 1;
 	mystates = init_states();
 	while (i < argc)
 	{
-		ptr_parser = init_parser_arg(mystates, argv[i], output.stack_A);
+		ptr_parser = init_parser_arg(mystates, argv[i], output->stack_A);
 		while (1)
 		{
 			classify_input(ptr_parser, mystates);
-			update_output_parser(ptr_parser, &output);
-			print_current_state(&output);
-			if ((output.name_state == InInvalid))
+			update_output_parser(ptr_parser, output);
+			if ((output->name_state == InInvalid))
 			{
-				clear_stack(&output.stack_A);
+				clear_stack(&(output->stack_A));
 				return (0);
 			}
 			else if ((ptr_parser->name_state == InSuccess))
@@ -83,9 +80,30 @@ int	parse_args(int argc, char *argv[])
 	return (1);
 }
 
+void	run_parser(int argc, char *argv[])
+{
+	t_output_parsing	output;
+	int					is_args_valid;
+
+	is_args_valid = 0;
+	if (argc < 2 || is_args_valid)
+		return ;
+	output = init_output_parser();
+	is_args_valid = validate_args(argc, argv, &output);
+	print_current_state(&output);
+	if (output.name_state == InInvalid)
+	{
+		write(2, "Error\n", 7);
+		return ;
+	}
+	if (is_empty_stack(output.stack_A))
+	{
+		return ;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
-	if (argc < 2 || (parse_args(argc, argv) == 0))
-		return (0);
+	run_parser(argc, argv);
 	return (0);
 }
