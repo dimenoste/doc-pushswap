@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 17:56:05 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:56:01 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct s_result_parsing
 	t_stack							*stack_a;
 }									t_output_parsing;
 
-// to avoid passing to many arguments as function parameters because of the norme
+/*to avoid passing to many arguments
+as function parameters because of the norme */
 typedef struct validate_args_inner_loop
 {
 	t_context						*ptr_parser;

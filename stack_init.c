@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 21:31:09 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 12:03:14 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:34:13 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	clear_stack(t_stack **stk)
 		free(current);
 		current = next;
 	}
-	free(*stk);  
+	free(*stk);
 	*stk = NULL;
 }

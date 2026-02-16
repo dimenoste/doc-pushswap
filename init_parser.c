@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:41:38 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/16 13:33:43 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:13:47 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	init_parser_arg(t_states *mystates, t_context *ptr_parser, char *s,
 	ptr_parser->nber_digits = 0;
 	ptr_parser->start_number = NULL;
 	ptr_parser->option_found = NULL;
-	ptr_parser->stack_A = stk;
+	ptr_parser->stack_a = stk;
 }

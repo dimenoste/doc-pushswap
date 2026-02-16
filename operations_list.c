@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   operations_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 09:29:36 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/03 18:30:02 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/01/30 09:29:36 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/02/16 18:35:48 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_op_list	*new_op_list(void)
@@ -56,9 +57,7 @@ void	add_operation(t_op_list *list, t_op_type op)
 void	print_operations(t_op_list *list)
 {
 	size_t		i;
-	const char	*names[11] = {"sa\n", "sb\n", "ss\n", "pa\n",
-		"pb\n", "ra\n",
-		"rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
+	const char	*names[11] = {"sa\n", "sb\n", "ss\n", "pa\n", "pb\n", "ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
 	size_t		len;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:38:54 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 19:12:11 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:58:04 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,12 @@
 
 void	digit_when_in_number(t_context *currState, t_states *mystates)
 {
-	printf("================== digit_when_in_number ==========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_number_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("================== digit_when_in_number ==========================\n");
 }
 
 void	dash_when_in_number(t_context *currState, t_states *mystates)
 {
-	printf("=================== dash_when_in_number =========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("=================== dash_when_in_number =========================\n");
 }
 
 void	space_when_in_number(t_context *currState, t_states *mystates)
@@ -36,18 +28,14 @@ void	space_when_in_number(t_context *currState, t_states *mystates)
 	int			is_number_unique;
 
 	is_number_unique = 0;
-	printf("================== space_when_in_number ==========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("from space_when_in_number, number as string : %s\n",
-		currState->start_number);
 	result = ft_patol(currState->start_number);
 	if (result.error == 0)
 	{
 		currState->candidate_number = result.number;
 		printf("number found at the end : %ld\n", result.number);
-		is_number_unique = is_node_unique(currState->stack_A,
+		is_number_unique = is_node_unique(currState->stack_a,
 				new_node(result.number));
-		print_stack(currState->stack_A,
+		print_stack(currState->stack_a,
 			"number found from space_when_in_number");
 		toin_space_state(currState, mystates);
 	}
@@ -55,8 +43,6 @@ void	space_when_in_number(t_context *currState, t_states *mystates)
 	{
 		toin_invalid_state(currState, mystates);
 	}
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("==================== space_when_in_number ========================\n");
 }
 
 void	end_when_in_number(t_context *currState, t_states *mystates)
@@ -65,24 +51,16 @@ void	end_when_in_number(t_context *currState, t_states *mystates)
 	int			is_number_unique;
 
 	is_number_unique = 0;
-	printf("================== end_when_in_number ==========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("from end_when_in_number, number as string : %s\n",
-		currState->start_number);
 	result = ft_patol(currState->start_number);
 	if (result.error == 0)
 	{
 		currState->candidate_number = result.number;
 		to_end_success(currState, mystates);
-		printf("number found at the end : %ld\n", result.number);
-		is_number_unique = is_node_unique(currState->stack_A,
+		is_number_unique = is_node_unique(currState->stack_a,
 				new_node(result.number));
-		print_stack(currState->stack_A, "number found from end_when_in_number");
 	}
 	if (result.error != 0 || is_number_unique == 0)
 	{
 		toin_invalid_state(currState, mystates);
 	}
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("==================== end_when_in_number ========================\n");
 }

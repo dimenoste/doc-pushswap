@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_rotate.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 17:38:44 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/03 18:58:39 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/03 17:38:44 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/02/16 18:15:10 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

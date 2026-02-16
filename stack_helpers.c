@@ -6,12 +6,11 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 21:31:09 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 17:12:00 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:20:14 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 t_bool	is_empty_stack(t_stack *stk)
 {

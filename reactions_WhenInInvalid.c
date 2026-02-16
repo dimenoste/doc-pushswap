@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:32:58 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 19:15:10 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:53:28 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,5 @@
 void	stay_in_invalid(t_context *currState,
 		struct implement_handlers *mystates)
 {
-	printf("================== stay_in_invalid ==========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("=================== stay_in_invalid =========================\n");
 }

@@ -6,13 +6,11 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:36:33 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 19:15:21 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:43:08 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-#include <unistd.h>
 
 t_vars_ft_patols	init_vars_patol(void)
 {
@@ -27,10 +25,14 @@ t_vars_ft_patols	init_vars_patol(void)
 
 int	is_digit_within_limits(char *s, t_vars_ft_patols vars)
 {
-	return (((vars.n > (vars.max - (int)(s[vars.i] - '0')) / 10)
-			&& vars.sign == 1) || ((vars.n > (vars.max + 1 - (int)(s[vars.i]
-						- '0')) / 10) && vars.sign == -1) || (s[vars.i] < 48
-			|| s[vars.i] > 57));
+	int	cond1;
+	int	cond2;
+	int	cond3;
+
+	cond1 = (vars.n > (vars.max - (int)(s[vars.i] - '0')) / 10);
+	cond2 = (vars.n > (vars.max + 1 - (int)(s[vars.i] - '0')) / 10);
+	cond3 = (s[vars.i] < 48 || s[vars.i] > 57);
+	return ((cond1 && vars.sign == 1) || (cond2 && vars.sign == -1) || cond3);
 }
 
 t_number	ft_patol(char *s)
@@ -41,7 +43,6 @@ t_number	ft_patol(char *s)
 	output.error = 1;
 	output.number = 0;
 	vars = init_vars_patol();
-	printf("from ft_patol, number to process  is |%s|\n", s);
 	if (s[vars.i] == '-')
 	{
 		vars.sign = -1;
@@ -49,11 +50,8 @@ t_number	ft_patol(char *s)
 	}
 	while (s[vars.i] != '\0' && s[vars.i] != ' ')
 	{
-		printf("from ft_patol, current char  is |%c|\n", s[vars.i]);
 		if (is_digit_within_limits(s, vars))
 		{
-			printf("from ft_patol, error case :  ccurrent char  is |%c|\n",
-				s[vars.i]);
 			return (output);
 		}
 		vars.n = vars.n * 10 + (int)(s[vars.i] - '0');
@@ -73,7 +71,7 @@ int	ft_strcmp_space(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (0);
-	while (s2[j] != '\0') //// SEGFAULLT
+	while (s2[j] != '\0')
 	{
 		if (s1[i] != s2[j])
 			return (0);
@@ -81,44 +79,4 @@ int	ft_strcmp_space(char *s1, char *s2)
 		j++;
 	}
 	return (1);
-}
-
-char	*get_strat_selector(char *s)
-{
-	int		i;
-	char	*strats[] = {"--simple", "--medium", "--complex", "--adaptive",
-			NULL};
-
-	i = 0;
-	printf("== FROM get_strat_selector ==, s passed is :%s\n", s);
-	while (strats[i])
-	{
-		if (ft_strcmp_space(s, strats[i]) == 1)
-		{
-			return (strats[i]);
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-char	*get_bench_selector(char *s)
-{
-	char	*bench;
-
-	bench = "--bench";
-	printf("== FROM get_bench_selector ==, s passed is :%s\n", s);
-	if (ft_strcmp_space(s, bench) == 1)
-	{
-		return (bench);
-	}
-	return (NULL);
-}
-const char	*get_state_name(t_enum_state_name enum_name)
-{
-	const char *statesNames[] = {"in_start_state", "in_dash_state",
-		"in_option_state", "in_space_state", "in_invalid_state",
-		"in_number_state", "in_success_state"};
-
-	return (statesNames[enum_name]);
 }

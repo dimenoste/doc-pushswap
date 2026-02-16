@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:45:28 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 19:15:10 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:28:24 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,15 @@
 
 void	digit_when_in_option(t_context *currState, t_states *mystates)
 {
-	printf("=================== digit_when_in_option =========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
 	toin_invalid_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("==================== digit_when_in_option ========================\n");
 }
 
 void	dash_when_in_option(t_context *currState, t_states *mystates)
 {
-	printf("================== dash_when_in_option =========================\n");
-	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (currState->nber_dash != 2)
 		toin_invalid_state(currState, mystates);
 	else
 		toin_dash_state(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("=================== dash_when_in_option =========================\n");
 }
 
 void	end_when_in_option(t_context *currState, t_states *mystates)
@@ -40,16 +32,12 @@ void	end_when_in_option(t_context *currState, t_states *mystates)
 
 	is_option_found = -1;
 	is_bench_found = -1;
-	printf("================ end of string has been reached ============================\n");
 	is_option_found = extract_option_in_state(currState);
 	is_bench_found = extract_bench_in_state(currState);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
 	if (is_option_found == 0 && is_bench_found == 0)
 	{
 		toin_invalid_state(currState, mystates);
 	}
 	else
 		to_end_success(currState, mystates);
-	printf("current state is : %s\n", get_state_name(currState->name_state));
-	printf("=================== end_when_in_option =========================\n");
 }

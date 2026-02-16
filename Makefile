@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/16 14:37:08 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/16 18:33:04 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,10 @@ OPS_SRCS = operations_swap.c \
 
 # fichiers sources du parser
 PARSER_SRCS = init_parser.c \
+	run_parser.c \
 	extract_option.c \
 	transitions_functions_parsing.c \
+	transitions_functions_parsing2.c \
 	utils_parsing.c \
 	init_states1.c \
 	init_states2.c \
@@ -54,6 +56,7 @@ PARSER_SRCS = init_parser.c \
 	reactions_WhenInOption1.c \
 	reactions_WhenInOption2.c \
 	reactions_WhenInInvalid.c \
+	get_options.c \
 	classify_input.c
 
 # --- Module Disorder : calcul du desordre pour la strategie adaptive ---
