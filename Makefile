@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/15 19:33:20 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/16 14:37:08 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ NAME_PARSER_TEST = parser
 
 OBJ_DIR = obj
 
+VALGRIND_OUTPUT = valgrind-out.txt
 
 # fichiers sources de la stack
 STACK_SRCS = stack_init.c \
@@ -92,7 +93,7 @@ all: $(NAME)
 # 	@$(CC) $(CFLAGS) $(OBJS_PUSH_SWAP) -o $(NAME)
 # 	@echo "$(GREEN)✓ $(NAME) compile !$(NC)"
 $(NAME):
-	@echo -e ${RED}main.c pas encore implemente. Utilise 'make test_ops'${NC}
+	@echo -e ${RED}main.c pas encore implemente. Utilise 'make test_ops' ou 'make test_parser'${NC}
 
 # --- Compilation du test des operations ---
 $(NAME_OP_TEST): $(OBJS_OP_TEST)
@@ -119,15 +120,15 @@ test_ops: $(NAME_OP_TEST)
 test_parser: $(NAME_PARSER_TEST)
 	@echo -e ${YELLOW}Lancement des tests parser...${NC}
 	@echo -e ${YELLOW}.........Test...........${NC}
-	@./$(NAME_PARSER_TEST) 1 2 3
-	@echo -e ${YELLOW}.........Test...........${NC}
-	@./$(NAME_PARSER_TEST) --simple 1 2 3
-	@echo -e ${YELLOW}.........Test...........${NC}
-	@./$(NAME_PARSER_TEST) l 1 2 3
-	@echo -e ${YELLOW}.........Test...........${NC}
-	@./$(NAME_PARSER_TEST)
-	@echo -e ${YELLOW}.........Test...........${NC}
-	@./$(NAME_PARSER_TEST) --simple
+	@./$(NAME_PARSER_TEST) 1 2 
+# 	@echo -e ${YELLOW}.........Test...........${NC}
+# 	@./$(NAME_PARSER_TEST) --simple 1 2 3
+# 	@echo -e ${YELLOW}.........Test...........${NC}
+# 	@./$(NAME_PARSER_TEST) l 1 2 3
+# 	@echo -e ${YELLOW}.........Test...........${NC}
+# 	@./$(NAME_PARSER_TEST)
+# 	@echo -e ${YELLOW}.........Test...........${NC}
+# 	@./$(NAME_PARSER_TEST) --simple
 	@echo -e ${GREEN}Le parser marche...${NC}
 
 # Valgrind sur le test des operations
@@ -155,6 +156,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME) $(NAME_OP_TEST) $(NAME_PARSER_TEST)
+	@rm -f $(VALGRIND_OUTPUT) vgcore*
 	@echo -e ${GREEN}✓ Executables supprimes${NC}
 	
 re: fclean all

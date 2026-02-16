@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 19:37:36 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:54:12 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	print_stack(t_stack *stack, const char *name)
 // add node to stack and return 1 or 0 if value in node is unique or not respectively
 int	is_node_unique(t_stack *stk, t_node *node)
 {
-	t_node *orig_head;
-	stack_add_back(stk, node);
+	t_node	*orig_head;
 
+	stack_add_back(stk, node);
 	if (!stk || !node)
 		return (0);
 	orig_head = stk->head;
@@ -56,5 +56,26 @@ int	is_node_unique(t_stack *stk, t_node *node)
 		stk->head = stk->head->next;
 	}
 	stk->head = orig_head;
+	return (1);
+}
+
+int	is_in_order(t_stack *stk)
+{
+	t_node *current;
+
+	if (!stk)
+		return (1);
+	else if (stk->length < 2)
+		return (1);
+	else
+	{
+		current = stk->head;
+		while (current != stk->tail)
+		{
+			if (current->value > current->next->value)
+				return (0);
+			current = current->next;
+		}
+	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/15 19:17:56 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:55:41 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ void	test_is_node_unique(void)
 	t_node	*node3;
 	t_node	*node4;
 
-	printf("\n%s=== TEST 10: Node Operations ===%s\n", YELLOW, NC);
+	printf("\n%s=== TEST 10: ARE THERE DUPLICATES ? ===%s\n", YELLOW, NC);
 	a = new_stack(A);
 	node1 = new_node(-56);
 	node2 = new_node(12);
@@ -277,6 +277,22 @@ void	test_is_node_unique(void)
 			node3));
 	print_test_result("adding a new node, is it unique?", is_node_unique(a,
 			node4));
+	print_stack(a, "A");
+	clear_stack(&a);
+}
+
+void	test_is_in_order(void)
+{
+	t_stack	*a;
+
+	printf("\n%s=== TEST 11: is_in_order ? ===%s\n", YELLOW, NC);
+	a = new_stack(A);
+	stack_add_back(a, new_node(-56));
+	stack_add_back(a, new_node(12));
+	stack_add_back(a, new_node(30));
+	stack_add_back(a, new_node(42));
+	stack_add_back(a, new_node(2656595));
+	print_test_result("is_in_order?", is_in_order(a));
 	print_stack(a, "A");
 	clear_stack(&a);
 }
@@ -299,6 +315,7 @@ int	main(void)
 	test_combined_operations();
 	test_edge_cases();
 	test_is_node_unique();
+	test_is_in_order();
 	printf("\n%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
 	printf("║              Test Results                      ║\n");

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/15 19:14:05 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:56:05 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct implement_handlers	t_states;
 typedef enum state_name				t_enum_state_name;
 typedef struct s_interface			t_state_interface;
 typedef struct s_stack				t_stack;
+typedef struct s_ctx				t_context;
 
 //////////STATE MACHINE FOR PARSING///////////
 typedef enum state_name
@@ -38,8 +39,16 @@ typedef struct s_result_parsing
 	t_enum_state_name				name_state;
 	char							*option_found;
 	char							*bench_found;
-	t_stack							*stack_A;
+	t_stack							*stack_a;
 }									t_output_parsing;
+
+// to avoid passing to many arguments as function parameters because of the norme
+typedef struct validate_args_inner_loop
+{
+	t_context						*ptr_parser;
+	t_states						*mystates;
+	t_output_parsing				*output;
+}									t_vars_pars_loop;
 
 // 1) Context
 typedef struct s_ctx
@@ -54,15 +63,16 @@ typedef struct s_ctx
 	int								candidate_number;
 	char							*bench_found;
 	int								nber_dash;
-	t_stack							*stack_A;
+	t_stack							*stack_a;
 }									t_context;
 
 // initialize the struct parser
-t_context							*init_parser_arg(t_states *mystates,
-										char *s, t_stack *stk);
+void								init_parser_arg(t_states *mystates,
+										t_context *ptr_parser, char *s,
+										t_stack *stk);
 int									validate_args(int argc, char *argv[],
 										t_output_parsing *output);
-void								run_parser(int argc, char *argv[]);
+t_stack								*run_parser(int argc, char *argv[]);
 
 // 2) State Interface
 typedef struct s_interface
@@ -300,9 +310,9 @@ size_t								stack_length(t_stack *stk);
 long								stack_top_peek(t_stack *stk);
 t_node								*stack_last(t_stack *stk);
 t_node								*stack_first(t_stack *stk);
-// print stack function
+// stack_helpers.c functions
 void								print_stack(t_stack *stack,
 										const char *name);
 int									is_node_unique(t_stack *stk, t_node *node);
-
+int									is_in_order(t_stack *stk);
 #endif

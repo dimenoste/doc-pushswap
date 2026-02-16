@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/22 21:31:09 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/03 17:53:47 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/01/22 21:31:09 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/02/16 12:03:14 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_node	*new_node(long value)
@@ -59,6 +60,6 @@ void	clear_stack(t_stack **stk)
 		free(current);
 		current = next;
 	}
-	free(*stk);
+	free(*stk);  
 	*stk = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 18:00:16 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/13 23:09:50 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 13:32:17 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,24 @@ t_state_interface	*init_success_state(void)
 
 void	free_mystates(t_states *mystates)
 {
-	if (mystates)
-		free(mystates);
+	if (!mystates)
+	{
+		return ;
+	}
+	if (mystates->ptr_in_dash_state)
+		free(mystates->ptr_in_dash_state);
+	if (mystates->ptr_in_invalid_state)
+		free(mystates->ptr_in_invalid_state);
+	if (mystates->ptr_in_number_state)
+		free(mystates->ptr_in_number_state);
+	if (mystates->ptr_in_option_state)
+		free(mystates->ptr_in_option_state);
+	if (mystates->ptr_in_space_state)
+		free(mystates->ptr_in_space_state);
+	if (mystates->ptr_in_start_state)
+		free(mystates->ptr_in_start_state);
+	if (mystates->ptr_in_success_state)
+		free(mystates->ptr_in_success_state);
+	free(mystates);
 	mystates = NULL;
 }

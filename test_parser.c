@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:39:07 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/15 19:39:24 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:03:49 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_current_state(t_output_parsing *output)
 		printf("bench  found is : %s\n", output->bench_found);
 	else
 		printf("bench  not found \n");
-	print_stack(output->stack_A, "stack from parsing");
+	print_stack(output->stack_a, "stack from parsing");
 }
 
 t_output_parsing	init_output_parser(void)
@@ -37,7 +37,7 @@ t_output_parsing	init_output_parser(void)
 	output.name_state = InInvalid;
 	output.option_found = NULL;
 	output.bench_found = NULL;
-	output.stack_A = stk;
+	output.stack_a = stk;
 	return (output);
 }
 
@@ -48,62 +48,87 @@ void	update_output_parser(t_context *ptr_parser, t_output_parsing *output)
 		output->option_found = ptr_parser->option_found;
 	if (!output->bench_found && ptr_parser->bench_found)
 		output->bench_found = ptr_parser->bench_found;
-	output->stack_A = ptr_parser->stack_A;
+	output->stack_a = ptr_parser->stack_a;
 }
 
-int	validate_args(int argc, char *argv[], t_output_parsing *output)
+int	validate_args_inner_loop(int i, t_vars_pars_loop *vars, int argc,
+		char *argv[])
 {
-	t_context	*ptr_parser;
-	t_states	*mystates;
-	int			i;
-
-	i = 1;
-	mystates = init_states();
 	while (i < argc)
 	{
-		ptr_parser = init_parser_arg(mystates, argv[i], output->stack_A);
+		init_parser_arg(vars->mystates, vars->ptr_parser, argv[i],
+			vars->output->stack_a);
 		while (1)
 		{
-			classify_input(ptr_parser, mystates);
-			update_output_parser(ptr_parser, output);
-			if ((output->name_state == InInvalid))
+			classify_input(vars->ptr_parser, vars->mystates);
+			update_output_parser(vars->ptr_parser, vars->output);
+			if ((vars->output->name_state == InInvalid))
 			{
-				clear_stack(&(output->stack_A));
+				clear_stack(&(vars->output->stack_a));
+				free(vars->ptr_parser);
+				free_mystates(vars->mystates);
 				return (0);
 			}
-			else if ((ptr_parser->name_state == InSuccess))
+			else if ((vars->ptr_parser->name_state == InSuccess))
 				break ;
-			(ptr_parser->mystring)++;
-		};
+			(vars->ptr_parser->mystring)++;
+		}
 		i++;
 	}
+	free(vars->ptr_parser);
+	free_mystates(vars->mystates);
 	return (1);
 }
+int	validate_args(int argc, char *argv[], t_output_parsing *output)
+{
+	t_vars_pars_loop	*pvars;
+	t_vars_pars_loop	vars;
+	int					i;
 
-void	run_parser(int argc, char *argv[])
+	i = 1;
+	pvars = &vars;
+	pvars->mystates = init_states();
+	pvars->ptr_parser = malloc(sizeof(t_context));
+	pvars->output = output;
+	if (!pvars->ptr_parser || !pvars->mystates)
+		return (0);
+	return (validate_args_inner_loop(i, pvars, argc, argv));
+}
+
+t_stack	*run_parser(int argc, char *argv[])
 {
 	t_output_parsing	output;
 	int					is_args_valid;
 
-	is_args_valid = 0;
-	if (argc < 2 || is_args_valid)
-		return ;
+	if (argc < 2)
+		return (NULL);
 	output = init_output_parser();
 	is_args_valid = validate_args(argc, argv, &output);
+	if (is_args_valid != 1)
+		return (NULL);
 	print_current_state(&output);
 	if (output.name_state == InInvalid)
 	{
 		write(2, "Error\n", 7);
-		return ;
+		return (NULL);
 	}
-	if (is_empty_stack(output.stack_A))
+	if (is_empty_stack(output.stack_a) || is_in_order(output.stack_a))
 	{
-		return ;
+		clear_stack(&(output.stack_a));
+		return (NULL);
 	}
+	return (output.stack_a);
 }
 
 int	main(int argc, char *argv[])
 {
-	run_parser(argc, argv);
+	t_stack	*stack_a;
+
+	stack_a = run_parser(argc, argv);
+	// if (stack_a == NULL)
+	// 	return (0);
+	print_stack(stack_a, "AFTER parsing");
+	clear_stack(&stack_a);
+	printf("THIS IS THE END\n");
 	return (0);
 }

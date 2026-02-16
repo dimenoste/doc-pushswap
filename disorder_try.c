@@ -13,7 +13,6 @@
 
 #include "push_swap.h"
 
-
 float	compute_disorder(t_stack *a)
 {
 	size_t	mistakes;
