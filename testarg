@@ -1,5 +1,6 @@
 
  ./parser 2 3 2
+ ./parser --simple --medium --d   //SEGFAULT
  ./parser 1555989665588
  ./parser --option
  ./parser 1555989665588

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:32:30 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/16 18:53:58 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:46:13 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_strat_selector(char *s)
 	strats[1] = "--medium";
 	strats[2] = "--complex";
 	strats[3] = "--adaptive";
-	strats[5] = NULL;
+	strats[4] = NULL;
 	i = 0;
 	while (strats[i])
 	{
