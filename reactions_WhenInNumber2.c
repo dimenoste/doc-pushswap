@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:38:54 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/16 18:58:04 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/18 23:36:24 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ void	space_when_in_number(t_context *currState, t_states *mystates)
 	if (result.error == 0)
 	{
 		currState->candidate_number = result.number;
-		printf("number found at the end : %ld\n", result.number);
 		is_number_unique = is_node_unique(currState->stack_a,
 				new_node(result.number));
-		print_stack(currState->stack_a,
-			"number found from space_when_in_number");
 		toin_space_state(currState, mystates);
 	}
 	else if (result.error != 0 || is_number_unique == 0)
