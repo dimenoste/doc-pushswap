@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 18:56:01 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/19 20:47:48 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,7 @@ typedef struct s_node
 	struct s_node					*next;
 	struct s_node					*previous;
 }									t_node;
+
 typedef struct s_stack
 {
 	t_node							*head;
