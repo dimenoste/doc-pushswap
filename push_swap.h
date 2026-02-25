@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/19 20:47:48 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/25 20:45:00 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,4 +317,9 @@ void								print_stack(t_stack *stack,
 										const char *name);
 int									is_node_unique(t_stack *stk, t_node *node);
 int									is_in_order(t_stack *stk);
+
+// utils sort
+float								compute_disorder(t_stack *a);
+void								print_array(int *arr, int len);
+
 #endif
