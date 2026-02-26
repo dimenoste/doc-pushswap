@@ -5,3 +5,7 @@ ft_printf
 args.txt
 valgrind*
 vgcore*
+*.gch
+prog
+a.out
+push_swap
