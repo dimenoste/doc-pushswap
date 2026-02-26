@@ -297,6 +297,46 @@ void	test_is_in_order(void)
 	clear_stack(&a);
 }
 
+void	test_compute_disorder(void)
+{
+	t_stack	*a;
+	float	result;
+
+	printf("\n%s=== TEST 12: compute_disorder ===%s\n", YELLOW, NC);
+	a = new_stack(A);
+	result = compute_disorder(a);
+	print_test_result("disorder: empty stack = 0.0", result == 0.0f);
+	clear_stack(&a);
+	a = new_stack(A);
+	stack_add_back(a, new_node(42));
+	result = compute_disorder(a);
+	print_test_result("disorder: single element = 0.0", result == 0.0f);
+	clear_stack(&a);
+	a = new_stack(A);
+	stack_add_back(a, new_node(1));
+	stack_add_back(a, new_node(2));
+	stack_add_back(a, new_node(3));
+	result = compute_disorder(a);
+	print_test_result("disorder: sorted [1,2,3] = 0.0", result == 0.0f);
+	clear_stack(&a);
+	a = new_stack(A);
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(2));
+	stack_add_back(a, new_node(1));
+	result = compute_disorder(a);
+	print_test_result("disorder: reversed [3,2,1] = 1.0", result == 1.0f);
+	clear_stack(&a);
+	a = new_stack(A);
+	stack_add_back(a, new_node(4));
+	stack_add_back(a, new_node(67));
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(87));
+	stack_add_back(a, new_node(23));
+	result = compute_disorder(a);
+	print_test_result("disorder: [4,67,3,87,23] = 40%",
+		result > 0.39f && result < 0.41f);
+	clear_stack(&a);
+}
 int	main(void)
 {
 	printf("%s", BLUE);
@@ -316,6 +356,7 @@ int	main(void)
 	test_edge_cases();
 	test_is_node_unique();
 	test_is_in_order();
+	test_compute_disorder();
 	printf("\n%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
 	printf("║              Test Results                      ║\n");

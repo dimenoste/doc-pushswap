@@ -46,7 +46,7 @@ int	validate_args_inner_loop(int i, t_vars_pars_loop *vars, int argc,
 		{
 			classify_input(vars->ptr_parser, vars->mystates);
 			update_output_parser(vars->ptr_parser, vars->output);
-			if ((vars->output->name_state == InInvalid))
+			if (vars->output->name_state == InInvalid)
 			{
 				write(1, "Error\n", 6);
 				clear_stack(&(vars->output->stack_a));
@@ -54,7 +54,7 @@ int	validate_args_inner_loop(int i, t_vars_pars_loop *vars, int argc,
 				free_mystates(vars->mystates);
 				return (0);
 			}
-			else if ((vars->ptr_parser->name_state == InSuccess))
+			else if (vars->ptr_parser->name_state == InSuccess)
 				break ;
 			(vars->ptr_parser->mystring)++;
 		}
@@ -92,10 +92,10 @@ t_stack	*run_parser(int argc, char *argv[])
 	is_args_valid = validate_args(argc, argv, &output);
 	if (is_args_valid != 1)
 		return (NULL);
-	// if (output.name_state == InInvalid)
-	// {
-	// 	return (NULL);
-	// }
+	if (output.name_state == InInvalid)
+	{
+		return (NULL);
+	}
 	if (is_empty_stack(output.stack_a) || is_in_order(output.stack_a))
 	{
 		clear_stack(&(output.stack_a));

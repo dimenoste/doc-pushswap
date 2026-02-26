@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+//il manque des free partout
 
 t_states	*init_states(void)
 {
@@ -27,6 +28,7 @@ t_states	*init_states(void)
 	mystates->ptr_in_number_state = init_number_state();
 	mystates->ptr_in_success_state = init_success_state();
 	return (mystates);
+	//il manque un free mehdi
 }
 
 t_state_interface	*init_start_state(void)
@@ -43,12 +45,13 @@ t_state_interface	*init_start_state(void)
 	ptr_in_start_state->handler_other = &other_when_in_start;
 	ptr_in_start_state->handler_end = &end_when_in_start;
 	return (ptr_in_start_state);
+	//il manque un free aussi ici
 }
 
 t_state_interface	*init_dash_state(void)
 {
 	t_state_interface	*ptr_in_dash_state;
-
+//pas la peine de deferencer le pointeur
 	ptr_in_dash_state = malloc(sizeof(t_state_interface));
 	if (!ptr_in_dash_state)
 		return (NULL);
