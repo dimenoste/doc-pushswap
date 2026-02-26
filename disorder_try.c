@@ -3,55 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   disorder_try.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 18:22:41 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/16 18:22:42 by mberraho         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
 /*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/27 23:46:50 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/01/27 23:46:58 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/26 18:12:51 by yasmine.aichi     #+#    #+#             */
+/*   Updated: 2026/02/26 18:12:53 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static size_t	count_inversions_from(t_node *ref, size_t start, size_t len)
+{
+	t_node	*cur_j;
+	size_t	j;
+	size_t	inv;
+
+	cur_j = ref->next;
+	j = start + 1;
+	inv = 0;
+	while (j < len)
+	{
+		if (ref->value > cur_j->value)
+			inv++;
+		cur_j = cur_j->next;
+		j++;
+	}
+	return (inv);
+}
+
 float	compute_disorder(t_stack *a)
 {
 	size_t	mistakes;
 	size_t	total_pairs;
-	t_node	*current_i;
-	t_node	*current_j;
+	t_node	*cur_i;
 	size_t	i;
-	size_t	j;
 
 	if (!a || a->length < 2)
 		return (0.0f);
 	mistakes = 0;
 	total_pairs = 0;
-	current_i = a->head;
+	cur_i = a->head;
 	i = 0;
 	while (i < a->length)
 	{
-		current_j = current_i->next;
-		j = i + 1;
-		while (j < a->length)
-		{
-			total_pairs++;
-			if (current_i->value > current_j->value)
-				mistakes++;
-			current_j = current_j->next;
-			j++;
-		}
-		current_i = current_i->next;
+		mistakes += count_inversions_from(cur_i, i, a->length);
+		total_pairs += a->length - 1 - i;
+		cur_i = cur_i->next;
 		i++;
 	}
 	if (total_pairs == 0)
