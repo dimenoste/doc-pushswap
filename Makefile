@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/16 18:33:04 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/25 21:31:46 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ VALGRIND_OUTPUT = valgrind-out.txt
 # fichiers sources de la stack
 STACK_SRCS = stack_init.c \
              stack_ops.c \
-             stack_helpers.c
+             stack_helpers.c \
+			 disorder_try.c
 
 # fichiers sources des operations
 OPS_SRCS = operations_swap.c \
@@ -96,7 +97,8 @@ all: $(NAME)
 # $(NAME): $(OBJS_PUSH_SWAP)
 # 	@$(CC) $(CFLAGS) $(OBJS_PUSH_SWAP) -o $(NAME)
 # 	@echo "$(GREEN)✓ $(NAME) compile !$(NC)"
-$(NAME):
+$(NAME): $(OBJS_PUSH_SWAP)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_PUSH_SWAP) -o $(NAME)
 	@echo -e ${RED}main.c pas encore implemente. Utilise 'make test_ops' ou 'make test_parser'${NC}
 
 # --- Compilation du test des operations ---

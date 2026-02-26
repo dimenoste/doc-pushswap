@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/16 18:23:40 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/25 20:38:05 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,5 @@ int	is_in_order(t_stack *stk)
 	}
 	return (1);
 }
+
+
