@@ -28,8 +28,7 @@ VALGRIND_OUTPUT = valgrind-out.txt
 # fichiers sources de la stack
 STACK_SRCS = stack_init.c \
              stack_ops.c \
-             stack_helpers.c \
-			 disorder_try.c
+             stack_helpers.c 
 
 # fichiers sources des operations
 OPS_SRCS = operations_swap.c \
@@ -61,7 +60,7 @@ PARSER_SRCS = init_parser.c \
 	classify_input.c
 
 # --- Module Disorder : calcul du desordre pour la strategie adaptive ---
-DISORDER_SRCS = disorder.c \
+DISORDER_SRCS = disorder.c
 
 #*----
 HEADER = push_swap.h
