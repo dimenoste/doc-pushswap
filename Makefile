@@ -60,16 +60,17 @@ PARSER_SRCS = init_parser.c \
 	classify_input.c
 
 # --- Module Disorder : calcul du desordre pour la strategie adaptive ---
-#TODO
-# DISORDER_SRCS = disorder.c
-HEADER = push_swap.h 
+DISORDER_SRCS = disorder.c \
+
+#*----
+HEADER = push_swap.h
 MAIN_PUSH_SWAP   = main.c
 MAIN_OP_TEST     = test_operations.c
 MAIN_PARSER_TEST = test_parser.c
 
 # Sources pour chaque executable
 SRCS_PUSH_SWAP   =  $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PUSH_SWAP) 
-SRCS_OP_TEST     = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(MAIN_OP_TEST)
+SRCS_OP_TEST     = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(DISORDER_SRCS) $(MAIN_OP_TEST)
 SRCS_PARSER_TEST = $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PARSER_TEST)
 
 OBJS_PUSH_SWAP   = $(SRCS_PUSH_SWAP:%.c=$(OBJ_DIR)/%.o)

@@ -316,4 +316,7 @@ void								print_stack(t_stack *stack,
 										const char *name);
 int									is_node_unique(t_stack *stk, t_node *node);
 int									is_in_order(t_stack *stk);
+// === disorder.c ===
+float								compute_disorder(t_stack *a);
+
 #endif
