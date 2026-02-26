@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/25 20:45:00 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:30:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,9 @@ typedef enum e_op_type
 
 typedef struct s_node
 {
-	long							value;
+	int								value;
+	size_t							rank;
+	t_bool							is_lis;
 	struct s_node					*next;
 	struct s_node					*previous;
 }									t_node;
@@ -315,6 +317,12 @@ t_node								*stack_first(t_stack *stk);
 // stack_helpers.c functions
 void								print_stack(t_stack *stack,
 										const char *name);
+
+void								print_rank_stack(t_stack *stack,
+										const char *name);
+void								print_lis_stack(t_stack *stack,
+										const char *name);
+
 int									is_node_unique(t_stack *stk, t_node *node);
 int									is_in_order(t_stack *stk);
 // === disorder.c ===
@@ -322,5 +330,15 @@ float								compute_disorder(t_stack *a);
 
 // utils sort
 void								print_array(int *arr, int len);
+void								bubble(int *arr, int len);
+void								swap_array(int *a, int *b);
+int									*from_ll_to_array(t_stack *stk);
+int									*init_array(int *arr, int len, int val);
+int									*lis(int *arr, int len_arr, int *len_lis);
+size_t								find_index(int val, int *arr, int len);
+void								add_rank_node(t_stack *stk,
+										int *arr_sorted);
+t_bool								is_in_lis(int val, int *arr, int len);
+void								add_lis_to_nodes(t_stack *stk);
 
 #endif
