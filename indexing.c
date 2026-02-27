@@ -6,7 +6,7 @@
 /*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:20:11 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/27 22:40:55 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/27 22:43:55 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static long	*copy_values(t_stack *stk)
  * insert pos b.
  * tu sais genre : [500, -3, 42] → rang [2, 0, 1]
  * ca copie dans un tab; trie chaque pos a un rang
- *
+ *[our chaque noeud, cherche le rang de sa valeur
  * */
 
 void	assign_indices(t_stack *stk)

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/27 20:53:09 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/27 22:43:55 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,6 +296,8 @@ int					is_in_order(t_stack *stk);
 // === disorder.c ===
 float				compute_disorder(t_stack *a);
 
+// === indexing.c ===
+void								assign_indices(t_stack *stk);
 // === insertion_sort.c ===
 void				sort_two(t_stack *a, t_op_list *ops);
 void				sort_three(t_stack *a, t_op_list *ops);
