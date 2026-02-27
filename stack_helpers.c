@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 21:31:09 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 18:20:14 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:43:26 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_node	*stack_first(t_stack *stk)
 	return (stk->head);
 }
 
-long	stack_top_peek(t_stack *stk)
+int	stack_top_peek(t_stack *stk)
 {
 	if (is_empty_stack(stk))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 11:12:08 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 18:15:12 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:43:26 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_stack *stack, t_op_list *ops)
 {
-	long	temp;
+	int	temp;
 
 	if (stack->length < 2)
 		return ;
@@ -29,7 +29,7 @@ void	swap(t_stack *stack, t_op_list *ops)
 
 void	swap_both(t_stack *a, t_stack *b, t_op_list *ops)
 {
-	long	temp;
+	int	temp;
 
 	if (a->length >= 2)
 	{

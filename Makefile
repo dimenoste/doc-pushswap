@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/26 20:12:26 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/27 15:29:34 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ $(NAME): $(OBJS_PUSH_SWAP)
 
 # --- Compilation du test des operations ---
 $(NAME_OP_TEST): $(OBJS_OP_TEST)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_OP_TEST) -o $(NAME_OP_TEST)
+	@$(CC) $(CFLAGS) $(INCLUDES) -g $(OBJS_OP_TEST) -o $(NAME_OP_TEST)
 	@echo -e ${GREEN}✓ $(NAME_OP_TEST) compile !${NC}
 
 # --- Compilation du test du parser ---

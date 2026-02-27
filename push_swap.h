@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/26 18:30:56 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/27 15:57:29 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ typedef struct vars_ft_patol
 
 typedef struct nber_struct
 {
-	long							number;
+	int								number;
 	int								error;
 }									t_number;
 
@@ -281,7 +281,7 @@ typedef struct s_op_list
 }									t_op_list;
 
 /// === stack_init.c file ===
-t_node								*new_node(long value);
+t_node								*new_node(int value);
 t_stack								*new_stack(t_stack_name name);
 void								clear_stack(t_stack **stk);
 // === stack_ops.c file ===
@@ -311,7 +311,7 @@ void								clear_op_list(t_op_list **list);
 // stack_helpers.c (utils and fast for debugging during algorithms deployment)
 t_bool								is_empty_stack(t_stack *stk);
 size_t								stack_length(t_stack *stk);
-long								stack_top_peek(t_stack *stk);
+int									stack_top_peek(t_stack *stk);
 t_node								*stack_last(t_stack *stk);
 t_node								*stack_first(t_stack *stk);
 // stack_helpers.c functions

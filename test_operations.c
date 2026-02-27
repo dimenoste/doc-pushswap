@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 17:55:41 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/27 18:05:20 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	test_swap_operation(void)
 	stack_add_back(a, new_node(7));
 	print_stack(a, "A before swap");
 	swap(a, ops);
+	printf("ops count %zu", ops->count);
 	print_test_result("First two elements swapped", a->head->value == 3
 		&& a->head->next->value == 5);
 	print_stack(a, "A after swap");
@@ -333,10 +334,103 @@ void	test_compute_disorder(void)
 	stack_add_back(a, new_node(87));
 	stack_add_back(a, new_node(23));
 	result = compute_disorder(a);
-	print_test_result("disorder: [4,67,3,87,23] = 40%",
-		result > 0.39f && result < 0.41f);
+	print_test_result("disorder: [4,67,3,87,23] = 40%", result > 0.39f
+		&& result < 0.41f);
 	clear_stack(&a);
 }
+
+void	test_from_ll_to_array(void)
+{
+	t_stack	*a;
+	int		*arr;
+	size_t	i;
+	t_node	*ptr_node;
+
+	printf("\n%s=== TEST 13: from stack to sorted array ===%s\n", YELLOW, NC);
+	i = 0;
+	a = new_stack(A);
+	stack_add_back(a, new_node(5));
+	stack_add_back(a, new_node(6));
+	stack_add_back(a, new_node(0));
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(4));
+	ptr_node = a->head;
+	arr = from_ll_to_array(a);
+	while (i < a->length)
+	{
+		printf("stack value :%d array: %d\n ", ptr_node->value, arr[i]);
+		print_test_result("compare element by element \n",
+			arr[i] == ptr_node->value);
+		ptr_node = ptr_node->next;
+		i++;
+	}
+	free(arr);
+	clear_stack(&a);
+}
+
+void	test_bubble_sort(void)
+{
+	int		arr[6] = {2, 5, 9, 6, 8, 6};
+	size_t	i;
+
+	printf("\n%s=== TEST 14: bubble sorted array ===%s\n", YELLOW, NC);
+	i = 0;
+	bubble(arr, 6);
+	while (i < (6 - 1))
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			print_test_result("Not sorted array \n", 0);
+			return ;
+		}
+		i++;
+	}
+	print_test_result("Sorted array \n", 1);
+}
+
+void	test_lis_len(void)
+{
+	int	mylist[] = {8, 3, 4, 6, 5, 2, 0, 7, 9, 1};
+	int	len_lis;
+
+	len_lis = 0;
+	printf("\n%s=== TEST 15: lis array ===%s\n", YELLOW, NC);
+	lis(mylist, 10, &len_lis);
+	if (len_lis != 5)
+	{
+		print_test_result("Lis not the right size \n", 0);
+		return ;
+	}
+	print_test_result("Lis has the right size \n", 1);
+}
+
+void	test_add_lis_to_node(void)
+{
+	t_stack	*a;
+	size_t	ranks[] = {3, 4, 0, 1, 2};
+	size_t	i;
+	t_node	*ptr_node;
+
+	printf("\n%s=== TEST 16: test_add_lis_to_node ===%s\n", YELLOW, NC);
+	i = 0;
+	a = new_stack(A);
+	stack_add_back(a, new_node(5));
+	stack_add_back(a, new_node(6));
+	stack_add_back(a, new_node(0));
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(4));
+	ptr_node = a->head;
+	while (i < a->length)
+	{
+		print_test_result("check rank \n", ranks[i] == ptr_node->rank);
+		ptr_node = ptr_node->next;
+		i++;
+	}
+	print_stack(a, "A");
+	print_rank_stack(a, "A");
+	clear_stack(&a);
+}
+
 int	main(void)
 {
 	printf("%s", BLUE);
@@ -357,6 +451,9 @@ int	main(void)
 	test_is_node_unique();
 	test_is_in_order();
 	test_compute_disorder();
+	test_from_ll_to_array();
+	test_bubble_sort();
+	test_lis_len();
 	printf("\n%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
 	printf("║              Test Results                      ║\n");

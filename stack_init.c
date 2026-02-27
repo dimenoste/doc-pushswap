@@ -6,13 +6,13 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 21:31:09 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 18:34:13 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/27 15:32:44 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*new_node(long value)
+t_node	*new_node(int value)
 {
 	t_node	*node;
 
