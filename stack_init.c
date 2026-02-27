@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 21:31:09 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/16 18:34:13 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/27 20:54:13 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_node	*new_node(long value)
 	if (!node)
 		return (NULL);
 	node->value = value;
+	node->index = -1;
 	node->next = node;
 	node->previous = node;
 	return (node);
