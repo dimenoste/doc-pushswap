@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/27 22:43:55 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/27 22:48:03 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,12 +296,20 @@ int					is_in_order(t_stack *stk);
 // === disorder.c ===
 float				compute_disorder(t_stack *a);
 
+// === reduce le nb des ops for insertion sort ===
+typedef struct s_cost
+{
+	size_t							pos_a;
+	size_t							pos_b;
+	int								cost_a;
+	int								cost_b;
+}									t_cost;
+
 // === indexing.c ===
 void								assign_indices(t_stack *stk);
 // === insertion_sort.c ===
 void				sort_two(t_stack *a, t_op_list *ops);
 void				sort_three(t_stack *a, t_op_list *ops);
-size_t				find_insert_pos_b(t_stack *b, long value);
 void				insertion_sort(t_stack *a, t_stack *b, t_op_list *ops);
 // === insertion_sort_utils.c ===
 size_t				find_max_pos(t_stack *stk);
