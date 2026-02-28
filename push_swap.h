@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/27 15:57:29 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/28 18:59:49 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,9 +336,12 @@ int									*from_ll_to_array(t_stack *stk);
 int									*init_array(int *arr, int len, int val);
 int									*lis(int *arr, int len_arr, int *len_lis);
 size_t								find_index(int val, int *arr, int len);
-void								add_rank_node(t_stack *stk,
-										int *arr_sorted);
+void								add_rank_node(t_stack *stk);
 t_bool								is_in_lis(int val, int *arr, int len);
 void								add_lis_to_nodes(t_stack *stk);
+size_t								find_min_pos(t_stack *stk,
+										t_node **ptr_min);
+int									is_sorted_circular(t_stack *stk);
+void								algo_lis(void);
 
 #endif

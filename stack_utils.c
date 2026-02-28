@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/26 21:10:31 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/28 16:59:52 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	print_lis_stack(t_stack *stack, const char *name)
 		printf("empty stack\n");
 		return ;
 	}
-	printf("[IS_LIS  of Stack %s, length=%zu]: ", name, stack->length);
+	printf("[IS_LIS of Stack %s, length=%zu]: ", name, stack->length);
 	current = stack->head;
 	i = 0;
 	while (i < stack->length)

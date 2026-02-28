@@ -67,18 +67,20 @@ size_t	find_index(int val, int *arr, int len)
 	}
 	return (-1);
 }
-void	add_rank_node(t_stack *stk, int *arr_sorted)
+void	add_rank_node(t_stack *stk)
 {
 	t_node	*ptr_node;
 	size_t	i;
 	int		index;
+	int		*arr_sorted;
 
 	i = 0;
-	if (!stk)
+	if (!stk || stk->length < 2)
 		return ;
+	arr_sorted = from_ll_to_array(stk);
+	// print_array(arr_sorted, stk->length);
+	bubble(arr_sorted, stk->length);
 	ptr_node = stk->head;
-	if (!ptr_node)
-		return ;
 	while (i < stk->length)
 	{
 		index = find_index(ptr_node->value, arr_sorted, stk->length);
@@ -89,4 +91,5 @@ void	add_rank_node(t_stack *stk, int *arr_sorted)
 		ptr_node = ptr_node->next;
 		i++;
 	}
+	free(arr_sorted);
 }

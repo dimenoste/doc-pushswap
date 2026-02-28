@@ -87,7 +87,7 @@ int	*lis(int *arr, int len_arr, int *len_lis)
 	}
 	free(d);
 	free(p);
-	print_array(subseq, ans);
+	// print_array(subseq, ans);
 	return (subseq);
 }
 
