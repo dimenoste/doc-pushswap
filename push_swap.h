@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/27 22:48:03 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/28 00:44:20 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,14 +308,25 @@ typedef struct s_cost
 // === indexing.c ===
 void								assign_indices(t_stack *stk);
 // === insertion_sort.c ===
-void				sort_two(t_stack *a, t_op_list *ops);
-void				sort_three(t_stack *a, t_op_list *ops);
-void				insertion_sort(t_stack *a, t_stack *b, t_op_list *ops);
+void								sort_two(t_stack *a, t_op_list *ops);
+void								sort_three(t_stack *a, t_op_list *ops);
+void								insertion_sort(t_stack *a, t_stack *b,
+										t_op_list *ops);
+// === insertion_sort_helpers.c ===
+t_node								*get_node_at(t_stack *stk, size_t pos);
+size_t								find_min_pos(t_stack *stk);
+void								rotate_to_top(t_stack *stk, size_t pos,
+										t_op_list *ops);
 // === insertion_sort_utils.c ===
-size_t				find_max_pos(t_stack *stk);
-t_node				*get_node_at(t_stack *stk, size_t pos);
-void				rotate_to_top(t_stack *stk, size_t pos, t_op_list *ops);
-void				push_all_to_a(t_stack *a, t_stack *b, t_op_list *ops);
+size_t								find_max_pos(t_stack *stk);
+size_t								find_insert_pos_b(t_stack *b, int index);
+void								push_all_to_a(t_stack *a, t_stack *b,
+										t_op_list *ops);
+// === insertion_sort_cost.c ===
+t_cost								find_cheapest(t_stack *a, t_stack *b);
+void								execute_rotations(t_stack *a, t_stack *b,
+										t_op_list *ops, t_cost *c);
+
 // utils sort
 void				print_array(int *arr, int len);
 
