@@ -6,15 +6,15 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:38:32 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/28 00:44:20 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/28 02:43:29 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdio.h> // A SUPPRIMER !!!!!!!!!!!!!!!!!!!
 # include <stdlib.h>
 # include <unistd.h>
+#include "ft_printf.h"
 
 typedef struct implement_handlers	t_states;
 typedef enum state_name				t_enum_state_name;

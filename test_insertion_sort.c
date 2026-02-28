@@ -6,12 +6,11 @@
 /*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 01:44:39 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/28 02:12:54 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/28 02:49:04 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
