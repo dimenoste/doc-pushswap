@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/28 14:55:19 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/28 20:33:13 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ VALGRIND_OUTPUT = valgrind-out.txt
 STACK_SRCS = stack_init.c \
              stack_ops.c \
              stack_helpers.c \
-			 sort_list.c \
+			 sort_array.c \
 			 lis.c
 
 # fichiers sources des operations

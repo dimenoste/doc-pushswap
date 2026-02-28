@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/28 19:11:53 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/28 20:33:20 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -438,7 +438,7 @@ void	test_add_rank_to_node(void)
 	size_t	i;
 	t_node	*ptr_node;
 
-	printf("\n%s===  TEST 17 sort_list.c: add_rank_node ===%s\n", YELLOW, NC);
+	printf("\n%s===  TEST 17 sort_array.c: add_rank_node ===%s\n", YELLOW, NC);
 	i = 0;
 	a = new_stack(A);
 	stack_add_back(a, new_node(5));
