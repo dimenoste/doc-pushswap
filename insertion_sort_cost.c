@@ -6,7 +6,7 @@
 /*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 22:59:23 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/28 01:16:22 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/02/28 02:03:11 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_cost	find_cheapest(t_stack *a, t_stack *b)
 	while (i < a->length)
 	{
 		cur.pos_a = i;
-		cur.cost_b = find_insert_pos_b(b, node->index);
+		cur.pos_b = find_insert_pos_b(b, node->index);
 		set_cost_directions(&cur, a, b);
 		if (total_cost(&cur) < total_cost(&best))
 			best = cur;
