@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   test_insertion_sort.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/28 01:44:39 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/28 02:49:04 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/28 01:44:39 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/03/01 16:51:12 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
@@ -18,9 +19,9 @@
 #define BLUE "\033[0;34m"
 #define NC "\033[0m"
 
-static int	g_tests_passed = 0;
-static int	g_tests_failed = 0;
-static size_t g_total_ops = 0;
+static int		g_tests_passed = 0;
+static int		g_tests_failed = 0;
+static size_t	g_total_ops = 0;
 
 void	print_test_result(const char *test_name, int passed)
 {
@@ -64,16 +65,11 @@ void	test_isort_case(long *vals, int count, const char *label)
 	a = make_stack(vals, count, A);
 	b = new_stack(B);
 	ops = new_op_list();
-
 	insertion_sort(a, b, ops);
-
-	snprintf(msg, sizeof(msg), "%s -> sorted (%zu ops)", label, ops->count);
+	printf(msg, sizeof(msg), "%s -> sorted (%zu ops)", label, ops->count);
 	print_test_result(msg, is_in_order(a) && is_empty_stack(b));
-
 	print_ops_count(ops, label); // affichage des opérations
-
-	g_total_ops += ops->count; // <- ajoute au total global
-
+	g_total_ops += ops->count;   // <- ajoute au total global
 	clear_stack(&a);
 	clear_stack(&b);
 	clear_op_list(&ops);
@@ -88,8 +84,8 @@ void	test_sort_three_case(long *vals, const char *label, int max_ops)
 	a = make_stack(vals, 3, A);
 	ops = new_op_list();
 	sort_three(a, ops);
-	snprintf(msg, sizeof(msg), "%s -> sorted, ops<=%d (got %zu)",
-		label, max_ops, ops->count);
+	printf(msg, sizeof(msg), "%s -> sorted, ops<=%d (got %zu)", label, max_ops,
+		ops->count);
 	print_test_result(msg, is_in_order(a) && (int)ops->count <= max_ops);
 	clear_stack(&a);
 	clear_op_list(&ops);
@@ -148,8 +144,8 @@ void	test_insertion_sort_edge_cases(void)
 void	test_insertion_sort_medium(void)
 {
 	long	v10[] = {7, 3, 9, 1, 5, 8, 2, 10, 4, 6};
-	long	v20[] = {17, 3, 12, 8, 20, 1, 15, 6, 11, 19,
-			4, 14, 9, 2, 18, 7, 13, 5, 16, 10};
+	long	v20[] = {17, 3, 12, 8, 20, 1, 15, 6, 11, 19, 4, 14, 9, 2, 18, 7, 13,
+			5, 16, 10};
 
 	printf("\n%s=== TEST: insertion_sort (medium) ===%s\n", YELLOW, NC);
 	test_isort_case(v10, 10, "n=10 random");
@@ -195,7 +191,7 @@ void	test_insertion_sort_large(void)
 			return ;
 		srand(42 + i);
 		fill_random_unique(v, sizes[i]);
-		snprintf(label, sizeof(label), "n=%d random", sizes[i]);
+		printf(label, sizeof(label), "n=%d random", sizes[i]);
 		test_isort_case(v, sizes[i], label);
 		free(v);
 		i++;
@@ -245,6 +241,7 @@ int	main(void)
 	printf("  %sFailed: %d%s\n", RED, g_tests_failed, BLUE);
 	printf("==================================================\n");
 	printf("%s\n", NC);
-printf("%s[INFO]%s Total opérations insertion_sort : %zu\n", BLUE, NC, g_total_ops);
+	printf("%s[INFO]%s Total opérations insertion_sort : %zu\n", BLUE, NC,
+		g_total_ops);
 	return (g_tests_failed != 0);
 }

@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/28 02:05:52 by yasmine.aichi    ###   ########.fr        #
+#    Updated: 2026/03/01 16:47:30 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,18 @@ VALGRIND_OUTPUT = valgrind-out.txt
 STACK_SRCS = stack_init.c \
              stack_ops.c \
              stack_helpers.c \
-			 sort_array.c \
-			 lis.c
+			 indexing.c
 
 # fichiers sources des operations
 OPS_SRCS = operations_swap.c \
            operations_rotate.c \
            operations_list.c \
 		   stack_utils.c
-
 # fichiers sources des algos
-ALGO_SRCS = medium_algo.c 
+ALGO_SRCS = medium_algo.c \
+			sort_array.c \
+			lis.c
+		  
 
 # fichiers sources du parser
 PARSER_SRCS = init_parser.c \
@@ -72,8 +73,7 @@ DISORDER_SRCS = disorder.c
 SORT_SRCS = insertion_sort.c \
 			insertion_sort_utils.c \
 			insertion_sort_helpers.c \
-            insertion_sort_cost.c \
-			indexing.c
+            insertion_sort_cost.c
 #*----
 HEADER = push_swap.h
 MAIN_PUSH_SWAP   = main.c

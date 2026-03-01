@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 22:09:09 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/28 01:04:42 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/26 22:09:09 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/03/01 16:15:48 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	find_max_pos(t_stack *stk)
 {
 	t_node	*current;
-	int		max_idx;
+	size_t	max_idx;
 	size_t	max_pos;
 	size_t	i;
 
@@ -78,7 +78,7 @@ du coup t'as vu)
 **   - execute_rotations
 **   - push_cheapest_to_b
 */
-size_t	find_insert_pos_b(t_stack *b, int index)
+size_t	find_insert_pos_b(t_stack *b, size_t index)
 {
 	t_node	*cur;
 	size_t	pos;
@@ -103,8 +103,8 @@ size_t	find_insert_pos_b(t_stack *b, int index)
 	}
 	return (max_pos);
 }
-//pareil
-static size_t	find_insert_pos_a(t_stack *a, int index)
+// pareil
+static size_t	find_insert_pos_a(t_stack *a, size_t index)
 {
 	t_node	*cur;
 	size_t	pos;
@@ -141,6 +141,3 @@ void	push_all_to_a(t_stack *a, t_stack *b, t_op_list *ops)
 	target = find_min_pos(a);
 	rotate_to_top(a, target, ops);
 }
-
-
-

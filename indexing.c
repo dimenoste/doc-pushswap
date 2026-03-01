@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/27 20:20:11 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/28 03:03:19 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/27 20:20:11 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/03/01 16:46:19 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
  *
  * */
 
-static void	sort_long_array(long *arr, int len)
+static void	sort_long_array(int *arr, int len)
 {
-	int		i;
-	int		j;
-	long	tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
 	i = 0;
 	while (i < len - 1)
@@ -45,9 +45,9 @@ static void	sort_long_array(long *arr, int len)
 }
 
 // trouver le fameux rang dans l'array trie
-static int	find_rank(long *sorted, int len, long value)
+static size_t	find_index(int *sorted, size_t len, int value)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < len)
@@ -65,9 +65,9 @@ static int	find_rank(long *sorted, int len, long value)
  * plus facile de trier un tableau qu'une liste
  * */
 
-static long	*copy_values(t_stack *stk)
+int	*copy_values(t_stack *stk)
 {
-	long	*arr;
+	int		*arr;
 	t_node	*cur;
 	size_t	i;
 
@@ -95,7 +95,7 @@ static long	*copy_values(t_stack *stk)
 
 void	assign_indices(t_stack *stk)
 {
-	long	*sorted;
+	int		*sorted;
 	t_node	*cur;
 	size_t	i;
 
@@ -106,13 +106,13 @@ void	assign_indices(t_stack *stk)
 	if (!sorted)
 		return ;
 	// vu que y'a un malloc dans copy_values
-	sort_long_array(sorted, (int)stk->length); //;) conversion de type
+	sort_long_array(sorted, stk->length); //;) conversion de type
 	cur = stk->head;
 	i = 0;
 	while (i < stk->length)
 	{
 		// chaque noeud recoit son rang ^0^
-		cur->index = find_rank(sorted, (int)stk->length, cur->value);
+		cur->index = find_index(sorted, stk->length, cur->value);
 		cur = cur->next;
 		i++;
 	}

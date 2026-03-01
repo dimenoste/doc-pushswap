@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:39:32 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/27 20:41:34 by yasmine.aichi    ###   ########.fr       */
+/*   Updated: 2026/03/01 16:13:47 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_stack(t_stack *stack, const char *name)
 	printf("\n");
 }
 
-void	print_rank_stack(t_stack *stack, const char *name)
+void	print_index_stack(t_stack *stack, const char *name)
 {
 	t_node	*current;
 	size_t	i;
@@ -51,7 +51,7 @@ void	print_rank_stack(t_stack *stack, const char *name)
 	i = 0;
 	while (i < stack->length)
 	{
-		printf("%zu", current->rank);
+		printf("%zu", current->index);
 		if (i < stack->length - 1)
 			printf(" → ");
 		current = current->next;

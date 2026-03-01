@@ -3,9 +3,9 @@
 typedef void	(*rotate_f)(t_stack *stack, t_op_list *ops);
 
 // function to find where is the minimum position of the stack list
-// 0 ranked value (index 0). Position is from 1 to len of stack
+// 0 indexed value (index 0). Position is from 1 to len of stack
 // pass a ptr to node by adress to get the min node
-size_t	find_min_pos(t_stack *stk, t_node **ptr_min)
+size_t	find_min_ptr_pos(t_stack *stk, t_node **ptr_min)
 {
 	size_t	i;
 	size_t	j;
@@ -42,7 +42,7 @@ int	is_sorted_circular(t_stack *stk)
 	is_sorted = 0;
 	head_orig = stk->head;
 	ptr_min = stk->head;
-	find_min_pos(stk, &ptr_min);
+	find_min_ptr_pos(stk, &ptr_min);
 	stk->head = ptr_min;
 	is_sorted = is_in_order(stk);
 	stk->head = head_orig; // reset the head at the original node
@@ -57,12 +57,12 @@ void	rotate_until_sorted(t_stack *stk, t_op_list *ops)
 	if (!stk || !stk->head || stk->length < 2 || !is_sorted_circular(stk))
 		return ;
 	ptr_min = stk->head;
-	pos_min = find_min_pos(stk, &ptr_min);
-	if (ptr_min->rank != 0 || pos_min == 0)
+	pos_min = find_min_ptr_pos(stk, &ptr_min);
+	if (ptr_min->index != 0 || pos_min == 0)
 	// pos min should be from 1 to len of stack
 	{
 		printf("error, ptr should point to node with 0 index and min value\n");
-		printf("rank found for the min is %zu\n", ptr_min->rank);
+		printf("index found for the min is %zu\n", ptr_min->index);
 		return ;
 	}
 	if (pos_min < stk->length / 2)
@@ -99,10 +99,10 @@ void	algo_lis(void)
 	stack_add_back(a, new_node(1));
 	if (a->length < 2)
 		return ;
-	// add lis and rank
+	// add lis and index
 	add_lis_to_nodes(a);
 	printf("====");
-	add_rank_node(a);
+	assign_indices(a);
 	// create stack b
 	b = new_stack(B);
 	printf("================================== insert non lis dans B ====================================\n\n");
@@ -130,7 +130,7 @@ void	algo_lis(void)
 		printf("head of b %d\n", b->head->value);
 		print_stack(a, "A");
 		print_stack(b, "B");
-		if (a->head->rank > b->head->rank)
+		if (a->head->index > b->head->index)
 			push(b, a, ops);
 		else
 			rotate(a, ops);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort_helpers.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasmine.aichi <yasmine.aichi@learner.42.t  +#+  +:+       +#+        */
+/*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/28 01:39:52 by yasmine.aichi     #+#    #+#             */
-/*   Updated: 2026/02/28 01:40:21 by yasmine.aichi    ###   ########.fr       */
+/*   Created: 2026/02/28 01:39:52 by yasmine.aic       #+#    #+#             */
+/*   Updated: 2026/03/01 16:15:56 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node	*get_node_at(t_stack *stk, size_t pos)
 size_t	find_min_pos(t_stack *stk)
 {
 	t_node	*current;
-	int		min_idx;
+	size_t	min_idx;
 	size_t	min_pos;
 	size_t	i;
 

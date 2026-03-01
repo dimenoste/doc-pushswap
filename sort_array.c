@@ -32,28 +32,6 @@ void	bubble(int *arr, int len)
 	}
 }
 
-int	*from_ll_to_array(t_stack *stk)
-{
-	t_node	*ptr_node;
-	int		*arr;
-	size_t	i;
-
-	if (!stk)
-		return (NULL);
-	i = 0;
-	ptr_node = stk->head;
-	arr = malloc(sizeof(int) * (stk->length));
-	if (!arr || !ptr_node)
-		return (NULL);
-	while (i < stk->length)
-	{
-		arr[i] = ptr_node->value;
-		ptr_node = ptr_node->next;
-		i++;
-	}
-	return (arr);
-}
-
 size_t	find_index(int val, int *arr, int len)
 {
 	int	i;
@@ -65,29 +43,26 @@ size_t	find_index(int val, int *arr, int len)
 			return (i);
 		i++;
 	}
-	return (-1);
+	return (i);
 }
-void	add_rank_node(t_stack *stk)
+void	add_index_node(t_stack *stk)
 {
 	t_node	*ptr_node;
 	size_t	i;
-	int		index;
+	size_t	index;
 	int		*arr_sorted;
 
 	i = 0;
 	if (!stk || stk->length < 2)
 		return ;
-	arr_sorted = from_ll_to_array(stk);
+	arr_sorted = copy_values(stk);
 	// print_array(arr_sorted, stk->length);
 	bubble(arr_sorted, stk->length);
 	ptr_node = stk->head;
 	while (i < stk->length)
 	{
 		index = find_index(ptr_node->value, arr_sorted, stk->length);
-		if (index >= 0)
-			ptr_node->rank = (size_t)index;
-		else
-			return ;
+		ptr_node->index = index;
 		ptr_node = ptr_node->next;
 		i++;
 	}

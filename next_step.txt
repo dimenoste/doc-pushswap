@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 19:30:58 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/27 16:04:51 by mberraho         ###   ########.fr        #
+#    Updated: 2026/03/01 17:02:13 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,36 @@ TODO :
     * disorder ok teste et norme
     * A ajouter dans operations_list.c, un code qui compte le nombre d'operations de chaque typedef
 3. algos 
-    * Sort simple OK et teste pas merci
+    * Sort simple OK et teste 
     * Medium a faire
     * Complex a faire (radix)
+
+    
+Lundi 2 MARS
+corriger les inputs large dans le fichier test_isort. (regarder les 2 derniers)// Yasmine  + NOrme
+corriper le print
+ Comment integrer la fonction de generation d array random ?
+et appeler la fonction insertion_sort
+
+Repartir de algo;
+corriger les test avec de vraies;
+
+lundi :
+
+corriger les fichiers a la norme (peut attendre mercredi)
+
+(ensembles)
+verifier les erreurs de logiques (dans is_sort ((repetitions ...)))
+reflechir a l'implementation de radix
+Bien tester nos algos 
+lire ft_ouput de matan 
+Creation de plusieurs .h (a faire ensemble)
+
+Objectif mardi ;
+
+le Bench
+brancher le parser (mehdi)
+
+
+
 

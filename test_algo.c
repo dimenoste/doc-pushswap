@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:12:31 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/28 17:41:52 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/03/01 16:39:25 by mberraho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	test_find_min_pos(void)
 	stack_add_back(a, new_node(1));
 	ptr_min = a->head;
 	// 4 is the position starting at 1 of the minimum
-	pos_min = find_min_pos(a, &ptr_min);
+	pos_min = find_min_ptr_pos(a, &ptr_min);
 	res = ((int)pos_min == 6);
 	print_test_result("is minimum found at right position \n", FALSE == res);
 	res = ((int)pos_min == -1);

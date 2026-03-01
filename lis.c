@@ -1,10 +1,10 @@
 
 // https://www.youtube.com/watch?v=cjWnW0hdF1Y
 // https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_printf.h"
 #include "push_swap.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void	print_array(int *arr, int len)
 {
@@ -120,7 +120,7 @@ void	add_lis_to_nodes(t_stack *stk)
 	i = 0;
 	if (!stk || stk->length < 2)
 		return ;
-	arr = from_ll_to_array(stk);
+	arr = copy_values(stk);
 	lis_subseq = lis(arr, stk->length, &len_lis);
 	ptr_node = stk->head;
 	if (!ptr_node)
