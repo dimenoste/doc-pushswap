@@ -20,6 +20,7 @@
 NAME            = push_swap
 NAME_OP_TEST    = operations
 NAME_PARSER_TEST = parser
+NAME_ALGO_TEST = algo
 NAME_ISORT_TEST  = isort
 
 OBJ_DIR = obj
@@ -29,13 +30,18 @@ VALGRIND_OUTPUT = valgrind-out.txt
 # fichiers sources de la stack
 STACK_SRCS = stack_init.c \
              stack_ops.c \
-             stack_helpers.c 
+             stack_helpers.c \
+			 sort_array.c \
+			 lis.c
 
 # fichiers sources des operations
 OPS_SRCS = operations_swap.c \
            operations_rotate.c \
            operations_list.c \
 		   stack_utils.c
+
+# fichiers sources des algos
+ALGO_SRCS = medium_algo.c 
 
 # fichiers sources du parser
 PARSER_SRCS = init_parser.c \
@@ -71,6 +77,7 @@ SORT_SRCS = insertion_sort.c \
 #*----
 HEADER = push_swap.h
 MAIN_PUSH_SWAP   = main.c
+MAIN_ALGO_TEST   = test_algo.c
 MAIN_OP_TEST     = test_operations.c
 MAIN_PARSER_TEST = test_parser.c
 MAIN_ISORT_TEST  = test_insertion_sort.c
@@ -79,11 +86,14 @@ MAIN_ISORT_TEST  = test_insertion_sort.c
 SRCS_PUSH_SWAP   =  $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PUSH_SWAP) 
 SRCS_OP_TEST     = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(DISORDER_SRCS) $(MAIN_OP_TEST)
 SRCS_PARSER_TEST = $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PARSER_TEST)
+SRCS_ALGO_TEST = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(ALGO_SRCS) $(MAIN_ALGO_TEST)
 SRCS_ISORT_TEST  = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(DISORDER_SRCS) $(SORT_SRCS) $(MAIN_ISORT_TEST)
 
 OBJS_PUSH_SWAP   = $(SRCS_PUSH_SWAP:%.c=$(OBJ_DIR)/%.o)
 OBJS_OP_TEST     = $(SRCS_OP_TEST:%.c=$(OBJ_DIR)/%.o)
 OBJS_PARSER_TEST = $(SRCS_PARSER_TEST:%.c=$(OBJ_DIR)/%.o)
+OBJS_ALGO_TEST = $(SRCS_ALGO_TEST:%.c=$(OBJ_DIR)/%.o)
+
 OBJS_ISORT_TEST  = $(SRCS_ISORT_TEST:%.c=$(OBJ_DIR)/%.o)
 
 CC      = cc
@@ -110,7 +120,7 @@ $(NAME): $(OBJS_PUSH_SWAP)
 
 # --- Compilation du test des operations ---
 $(NAME_OP_TEST): $(OBJS_OP_TEST)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_OP_TEST) -o $(NAME_OP_TEST)
+	@$(CC) $(CFLAGS) $(INCLUDES) -g $(OBJS_OP_TEST) -o $(NAME_OP_TEST)
 	@echo -e ${GREEN}✓ $(NAME_OP_TEST) compile !${NC}
 
 # --- Compilation du test du parser ---
@@ -118,6 +128,10 @@ $(NAME_PARSER_TEST): $(OBJS_PARSER_TEST)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_PARSER_TEST) -g -O0 -o $(NAME_PARSER_TEST)
 	@echo -e ${GREEN}✓ $(NAME_PARSER_TEST) compile !${NC}
 
+# --- Compilation du test des algos ---
+$(NAME_ALGO_TEST): $(OBJS_ALGO_TEST)
+	@$(CC) $(CFLAGS) $(INCLUDES) -g $(OBJS_ALGO_TEST) -o $(NAME_ALGO_TEST)
+	@echo -e ${GREEN}✓ $(NAME_ALGO_TEST) compile !${NC}
 # -- Compilation du test du simple --
 $(NAME_ISORT_TEST): $(OBJS_ISORT_TEST)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_ISORT_TEST) -o $(NAME_ISORT_TEST)
@@ -150,6 +164,10 @@ test_parser: $(NAME_PARSER_TEST)
 # 	@./$(NAME_PARSER_TEST) --simple
 	@echo -e ${GREEN}Le parser marche...${NC}
 
+# lance le test des algos
+test_algo: $(NAME_ALGO_TEST)
+	@echo -e ${YELLOW}Lancement des tests operations...${NC}
+	@./$(NAME_ALGO_TEST)
 # insertion sort
 test_isort: $(NAME_ISORT_TEST)
 	@echo -e ${YELLOW}========================================${NC}

@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/03 19:30:58 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/15 17:14:00 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/27 16:04:51 by mberraho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,3 +37,17 @@ Taches
 
 
 3)Supprimer les objets initialise et lancer valgring !!
+
+
+feb 27
+
+TODO : 
+1. strategy strategy selector 
+2. Mode Bench : 
+    * disorder ok teste et norme
+    * A ajouter dans operations_list.c, un code qui compte le nombre d'operations de chaque typedef
+3. algos 
+    * Sort simple OK et teste pas merci
+    * Medium a faire
+    * Complex a faire (radix)
+

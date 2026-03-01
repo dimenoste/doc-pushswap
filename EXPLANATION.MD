@@ -24,7 +24,7 @@ The circular property means that `tail->next` points to `head`, and `head->previ
 
 ```c
 typedef struct s_node {
-    long          value;      // Integer value to sort
+    int          value;      // Integer value to sort
     struct s_node *next;      // Pointer to next node
     struct s_node *previous;  // Pointer to previous node
 } t_node;

@@ -199,9 +199,9 @@ typedef struct vars_ft_patol
 
 typedef struct nber_struct
 {
-	long			number;
-	int				error;
-}					t_number;
+	int								number;
+	int								error;
+}									t_number;
 
 t_number			ft_patol(char *s);
 int					ft_strcmp_space(char *s1, char *s2);
@@ -240,8 +240,9 @@ typedef enum e_op_type
 
 typedef struct s_node
 {
-	long			value;
-	int 			index;
+	int			value;
+	size_t     	index;
+t_bool is_lis;
 	struct s_node	*next;
 	struct s_node	*previous;
 }					t_node;
@@ -262,9 +263,9 @@ typedef struct s_op_list
 }					t_op_list;
 
 /// === stack_init.c file ===
-t_node				*new_node(long value);
-t_stack				*new_stack(t_stack_name name);
-void				clear_stack(t_stack **stk);
+t_node								*new_node(int value);
+t_stack								*new_stack(t_stack_name name);
+void								clear_stack(t_stack **stk);
 // === stack_ops.c file ===
 void				stack_add_back(t_stack *stk, t_node *node);
 void				stack_add_front(t_stack *stk, t_node *node);
@@ -284,15 +285,22 @@ void				add_operation(t_op_list *list, t_op_type op);
 void				print_operations(t_op_list *list);
 void				clear_op_list(t_op_list **list);
 // stack_helpers.c (utils and fast for debugging during algorithms deployment)
-t_bool				is_empty_stack(t_stack *stk);
-size_t				stack_length(t_stack *stk);
-long				stack_top_peek(t_stack *stk);
-t_node				*stack_last(t_stack *stk);
-t_node				*stack_first(t_stack *stk);
+t_bool								is_empty_stack(t_stack *stk);
+size_t								stack_length(t_stack *stk);
+int									stack_top_peek(t_stack *stk);
+t_node								*stack_last(t_stack *stk);
+t_node								*stack_first(t_stack *stk);
 // stack_helpers.c functions
-void				print_stack(t_stack *stack, const char *name);
-int					is_node_unique(t_stack *stk, t_node *node);
-int					is_in_order(t_stack *stk);
+void								print_stack(t_stack *stack,
+										const char *name);
+
+void								print_rank_stack(t_stack *stack,
+										const char *name);
+void								print_lis_stack(t_stack *stack,
+										const char *name);
+
+int									is_node_unique(t_stack *stk, t_node *node);
+int									is_in_order(t_stack *stk);
 // === disorder.c ===
 float				compute_disorder(t_stack *a);
 
@@ -328,6 +336,20 @@ void								execute_rotations(t_stack *a, t_stack *b,
 										t_op_list *ops, t_cost *c);
 
 // utils sort
+void								print_array(int *arr, int len);
+void								bubble(int *arr, int len);
+void								swap_array(int *a, int *b);
+int									*from_ll_to_array(t_stack *stk);
+int									*init_array(int *arr, int len, int val);
+int									*lis(int *arr, int len_arr, int *len_lis);
+size_t								find_index(int val, int *arr, int len);
+void								add_rank_node(t_stack *stk);
+t_bool								is_in_lis(int val, int *arr, int len);
+void								add_lis_to_nodes(t_stack *stk);
+size_t								find_min_pos(t_stack *stk,
+										t_node **ptr_min);
+int									is_sorted_circular(t_stack *stk);
+void								algo_lis(void);
 void				print_array(int *arr, int len);
 
 #endif

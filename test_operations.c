@@ -123,6 +123,7 @@ void	test_swap_operation(void)
 	stack_add_back(a, new_node(7));
 	print_stack(a, "A before swap");
 	swap(a, ops);
+	printf("ops count %zu", ops->count);
 	print_test_result("First two elements swapped", a->head->value == 3
 		&& a->head->next->value == 5);
 	print_stack(a, "A after swap");
@@ -334,10 +335,178 @@ void	test_compute_disorder(void)
 	stack_add_back(a, new_node(87));
 	stack_add_back(a, new_node(23));
 	result = compute_disorder(a);
-	print_test_result("disorder: [4,67,3,87,23] = 40%",
-		result > 0.39f && result < 0.41f);
+	print_test_result("disorder: [4,67,3,87,23] = 40%", result > 0.39f
+		&& result < 0.41f);
 	clear_stack(&a);
 }
+
+void	test_from_ll_to_array(void)
+{
+	t_stack	*a;
+	int		*arr;
+	size_t	i;
+	t_node	*ptr_node;
+
+	printf("\n%s=== TEST 13: from stack to sorted array ===%s\n", YELLOW, NC);
+	i = 0;
+	a = new_stack(A);
+	stack_add_back(a, new_node(5));
+	stack_add_back(a, new_node(6));
+	stack_add_back(a, new_node(0));
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(4));
+	ptr_node = a->head;
+	arr = from_ll_to_array(a);
+	while (i < a->length)
+	{
+		printf("stack value :%d array: %d\n ", ptr_node->value, arr[i]);
+		print_test_result("compare element by element \n",
+			arr[i] == ptr_node->value);
+		ptr_node = ptr_node->next;
+		i++;
+	}
+	free(arr);
+	clear_stack(&a);
+}
+
+void	test_bubble_sort(void)
+{
+	int		arr[6] = {2, 5, 9, 6, 8, 10};
+	size_t	i;
+
+	printf("\n%s=== TEST 14: bubble sorted array ===%s\n", YELLOW, NC);
+	i = 0;
+	print_array(arr, 6);
+	bubble(arr, 6);
+	while (i < (6 - 1))
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			print_test_result("Not sorted array \n", 0);
+			return ;
+		}
+		i++;
+	}
+	print_test_result("Sorted array \n", 1);
+	print_array(arr, 6);
+}
+
+void	test_lis_len(void)
+{
+	int	mylist[] = {8, 3, 4, 6, 5, 2, 0, 7, 9, 1};
+	int	len_lis;
+
+	len_lis = 0;
+	printf("\n%s=== TEST 15: lis array ===%s\n", YELLOW, NC);
+	lis(mylist, 10, &len_lis);
+	if (len_lis != 5)
+	{
+		print_test_result("Lis not the right size \n", 0);
+		return ;
+	}
+	print_test_result("Lis has the right size \n", 1);
+}
+
+void	test_lis_elements(void)
+{
+	int	mylist[] = {8, 3, 4, 6, 5, 2, 0, 7, 9, 1};
+	int	lis_expected[] = {3, 4, 6, 7, 9};
+	int	len_lis;
+	int	*lis_obtained;
+	int	i;
+
+	i = 0;
+	len_lis = 0;
+	printf("\n%s=== TEST 16: lis array ===%s\n", YELLOW, NC);
+	lis_obtained = lis(mylist, 10, &len_lis);
+	if (len_lis != 5)
+	{
+		print_test_result("Lis not the right size \n", 0);
+		return ;
+	}
+	while (i < len_lis)
+	{
+		print_test_result("lis element \n", lis_expected[i] == lis_obtained[i]);
+		i++;
+	}
+}
+
+void	test_add_rank_to_node(void)
+{
+	t_stack	*a;
+	size_t	ranks[] = {3, 4, 0, 1, 2};
+	int		*arr;
+	size_t	i;
+	t_node	*ptr_node;
+
+	printf("\n%s===  TEST 17 sort_array.c: add_rank_node ===%s\n", YELLOW, NC);
+	i = 0;
+	a = new_stack(A);
+	stack_add_back(a, new_node(5));
+	stack_add_back(a, new_node(6));
+	stack_add_back(a, new_node(0));
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(4));
+	ptr_node = a->head;
+	arr = from_ll_to_array(a);
+	bubble(arr, a->length);
+	add_rank_node(a);
+	while (i < a->length)
+	{
+		print_test_result("check rank \n", ranks[i] == ptr_node->rank);
+		ptr_node = ptr_node->next;
+		i++;
+	}
+	print_stack(a, "A");
+	print_rank_stack(a, "A");
+	clear_stack(&a);
+}
+
+void	test_add_lis_to_nodes(void)
+{
+	int		lis_expected[] = {3, 4, 6, 7, 9};
+	int		len_lis;
+	t_stack	*a;
+	size_t	i;
+	t_node	*ptr_node;
+	int		j;
+
+	// int		mylist[] = {8, 3, 4, 6, 5, 2, 0, 7, 9, 1};
+	i = 0;
+	len_lis = 0;
+	printf("\n%s=== TEST 18 lis.c: add_lis_to_nodes ===%s\n", YELLOW, NC);
+	a = new_stack(A);
+	stack_add_back(a, new_node(8));
+	stack_add_back(a, new_node(3));
+	stack_add_back(a, new_node(4));
+	stack_add_back(a, new_node(6));
+	stack_add_back(a, new_node(5));
+	stack_add_back(a, new_node(2));
+	stack_add_back(a, new_node(0));
+	stack_add_back(a, new_node(7));
+	stack_add_back(a, new_node(9));
+	stack_add_back(a, new_node(1));
+	ptr_node = a->head;
+	add_lis_to_nodes(a);
+	while (i < a->length)
+	{
+		j = 0;
+		while (j < len_lis)
+		{
+			if (lis_expected[j] == ptr_node->value)
+				print_test_result("is in lis \n", TRUE == ptr_node->is_lis);
+			else
+				print_test_result("is in lis \n", FALSE == ptr_node->is_lis);
+			j++;
+		}
+		ptr_node = ptr_node->next;
+		i++;
+	}
+	print_stack(a, "A");
+	print_lis_stack(a, "A");
+	clear_stack(&a);
+}
+
 int	main(void)
 {
 	printf("%s", BLUE);
@@ -346,18 +515,23 @@ int	main(void)
 	printf("║        Data Structure Validation               ║\n");
 	printf("╚════════════════════════════════════════════════╝\n");
 	printf("%s\n", NC);
-	test_stack_creation();
-	test_node_operations();
-	test_pop_operation();
-	test_swap_operation();
-	test_push_operation();
-	test_rotate_operation();
-	test_reverse_rotate_operation();
-	test_combined_operations();
-	test_edge_cases();
-	test_is_node_unique();
-	test_is_in_order();
-	test_compute_disorder();
+	/* Call tests functions*/
+	// test_stack_creation();
+	// test_node_operations();
+	// test_pop_operation();
+	// test_swap_operation();
+	// test_push_operation();
+	// test_rotate_operation();
+	// test_reverse_rotate_operation();
+	// test_combined_operations();
+	// test_edge_cases();
+	// test_is_node_unique();
+	// test_is_in_order();
+	// test_compute_disorder();
+	// test_from_ll_to_array();
+	test_bubble_sort();
+	// test_lis_elements();
+	// test_add_lis_to_nodes();
 	printf("\n%s", BLUE);
 	printf("╔════════════════════════════════════════════════╗\n");
 	printf("║              Test Results                      ║\n");

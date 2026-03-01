@@ -34,7 +34,7 @@ int	*init_array(int *arr, int len, int val)
 	return (arr);
 }
 
-int	*lis(int *arr, int len_arr)
+int	*lis(int *arr, int len_arr, int *len_lis)
 {
 	int	*d;
 	int	*p;
@@ -43,16 +43,14 @@ int	*lis(int *arr, int len_arr)
 	int	j;
 	int	ans;
 	int	pos;
-	int	k;
 	int	end;
 
+	d = NULL;
 	ans = 0;
 	pos = 0;
 	i = 0;
 	d = init_array(d, len_arr, 1);
-	print_array(d, len_arr);
 	p = init_array(d, len_arr, -1);
-	print_array(p, len_arr);
 	while (i < len_arr)
 	{
 		j = 0;
@@ -79,6 +77,7 @@ int	*lis(int *arr, int len_arr)
 		i++;
 	}
 	printf("lis length is %d\n", ans);
+	*len_lis = ans;
 	subseq = malloc(sizeof(int) * ans);
 	if (!subseq)
 		return (NULL);
@@ -91,15 +90,45 @@ int	*lis(int *arr, int len_arr)
 	}
 	free(d);
 	free(p);
-	print_array(subseq, ans);
+	// print_array(subseq, ans);
 	return (subseq);
 }
 
-int	main(void)
+t_bool	is_in_lis(int val, int *arr, int len)
 {
-	int arr[] = {8, 3, 4, 6, 5, 2, 0, 7, 9, 1};
+	int	i;
 
-	// print_array(arr, 10);
-	lis(arr, 10);
-	return (0);
+	i = 0;
+	while (i < len)
+	{
+		if (val == arr[i])
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
+void	add_lis_to_nodes(t_stack *stk)
+{
+	int		*arr;
+	size_t	i;
+	int		len_lis;
+	int		*lis_subseq;
+	t_node	*ptr_node;
+
+	len_lis = 0;
+	i = 0;
+	if (!stk || stk->length < 2)
+		return ;
+	arr = from_ll_to_array(stk);
+	lis_subseq = lis(arr, stk->length, &len_lis);
+	ptr_node = stk->head;
+	if (!ptr_node)
+		return ;
+	while (i < stk->length)
+	{
+		ptr_node->is_lis = is_in_lis(ptr_node->value, lis_subseq, len_lis);
+		ptr_node = ptr_node->next;
+		i++;
+	}
 }
