@@ -1,6 +1,9 @@
 
 // https://www.youtube.com/watch?v=cjWnW0hdF1Y
 // https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html
+#include <stdlib.h>
+#include <unistd.h>
+#include "ft_printf.h"
 #include "push_swap.h"
 
 void	print_array(int *arr, int len)

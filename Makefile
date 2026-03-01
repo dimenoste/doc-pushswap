@@ -6,7 +6,7 @@
 #    By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/15 09:12:00 by yasmine.aic       #+#    #+#              #
-#    Updated: 2026/02/28 20:33:13 by mberraho         ###   ########.fr        #
+#    Updated: 2026/02/28 02:05:52 by yasmine.aichi    ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ NAME            = push_swap
 NAME_OP_TEST    = operations
 NAME_PARSER_TEST = parser
 NAME_ALGO_TEST = algo
+NAME_ISORT_TEST  = isort
 
 OBJ_DIR = obj
 
@@ -67,25 +68,33 @@ PARSER_SRCS = init_parser.c \
 
 # --- Module Disorder : calcul du desordre pour la strategie adaptive ---
 DISORDER_SRCS = disorder.c
-
+# --- fichiers source de insertion sort
+SORT_SRCS = insertion_sort.c \
+			insertion_sort_utils.c \
+			insertion_sort_helpers.c \
+            insertion_sort_cost.c \
+			indexing.c
 #*----
 HEADER = push_swap.h
 MAIN_PUSH_SWAP   = main.c
 MAIN_ALGO_TEST   = test_algo.c
 MAIN_OP_TEST     = test_operations.c
 MAIN_PARSER_TEST = test_parser.c
+MAIN_ISORT_TEST  = test_insertion_sort.c
 
 # Sources pour chaque executable
 SRCS_PUSH_SWAP   =  $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PUSH_SWAP) 
 SRCS_OP_TEST     = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(DISORDER_SRCS) $(MAIN_OP_TEST)
 SRCS_PARSER_TEST = $(STACK_SRCS) $(OPS_SRCS) $(PARSER_SRCS) $(MAIN_PARSER_TEST)
 SRCS_ALGO_TEST = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(ALGO_SRCS) $(MAIN_ALGO_TEST)
+SRCS_ISORT_TEST  = $(HEADER) $(STACK_SRCS) $(OPS_SRCS) $(DISORDER_SRCS) $(SORT_SRCS) $(MAIN_ISORT_TEST)
 
 OBJS_PUSH_SWAP   = $(SRCS_PUSH_SWAP:%.c=$(OBJ_DIR)/%.o)
 OBJS_OP_TEST     = $(SRCS_OP_TEST:%.c=$(OBJ_DIR)/%.o)
 OBJS_PARSER_TEST = $(SRCS_PARSER_TEST:%.c=$(OBJ_DIR)/%.o)
 OBJS_ALGO_TEST = $(SRCS_ALGO_TEST:%.c=$(OBJ_DIR)/%.o)
 
+OBJS_ISORT_TEST  = $(SRCS_ISORT_TEST:%.c=$(OBJ_DIR)/%.o)
 
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror -g
@@ -123,6 +132,11 @@ $(NAME_PARSER_TEST): $(OBJS_PARSER_TEST)
 $(NAME_ALGO_TEST): $(OBJS_ALGO_TEST)
 	@$(CC) $(CFLAGS) $(INCLUDES) -g $(OBJS_ALGO_TEST) -o $(NAME_ALGO_TEST)
 	@echo -e ${GREEN}✓ $(NAME_ALGO_TEST) compile !${NC}
+# -- Compilation du test du simple --
+$(NAME_ISORT_TEST): $(OBJS_ISORT_TEST)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_ISORT_TEST) -o $(NAME_ISORT_TEST)
+	@echo -e ${GREEN}✓ $(NAME_ISORT_TEST) compile !${NC}
+
 
 # general push_swap dir of .o
 $(OBJ_DIR)/%.o: %.c
@@ -154,12 +168,23 @@ test_parser: $(NAME_PARSER_TEST)
 test_algo: $(NAME_ALGO_TEST)
 	@echo -e ${YELLOW}Lancement des tests operations...${NC}
 	@./$(NAME_ALGO_TEST)
+# insertion sort
+test_isort: $(NAME_ISORT_TEST)
+	@echo -e ${YELLOW}========================================${NC}
+	@echo -e ${YELLOW} Running insertion_sort test suite...  ${NC}
+	@echo -e ${YELLOW}========================================${NC}
+	@./$(NAME_ISORT_TEST)
+	@echo -e ${GREEN}✓ insertion_sort tests finished${NC}
 
 # Valgrind sur le test des operations
 valgrind: $(NAME_OP_TEST)
 	@echo -e ${YELLOW}✓ Valgrind en cours...${NC}
 	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME_OP_TEST)
 
+#Valgrind sur les test de l'algo simple
+valgrind_isort: $(NAME_ISORT_TEST)
+	@echo -e "\033[0;33m✓ Valgrind (insertion_sort) en cours...\033[0m"
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME_ISORT_TEST)
 norm:
 	@norminette $(SRCS_PUSH_SWAP)
 
@@ -168,7 +193,9 @@ help:
 	@echo "  make            - Build push_swap (quand main.c existera)"
 	@echo "  make test_ops   - Compile et lance les tests operations"
 	@echo "  make test_parser   - Compile et lance les tests du parser"
+	@echo "  make test_isort - Compile et lance les tests insertion sort"
 	@echo "  make valgrind   - Test operations avec valgrind"
+	@echo "  make valgrind_isort - Test insertion sort avec valgrind"
 	@echo "  make clean      - Supprime les .o"
 	@echo "  make fclean     - Supprime tout (clean + executables)"
 	@echo "  make re         - Recompile tout depuis zero"
@@ -179,10 +206,11 @@ clean:
 	@echo -e ${GREEN}✓ Fichiers objets supprimes${NC}
 
 fclean: clean
-	@rm -f $(NAME) $(NAME_OP_TEST) $(NAME_PARSER_TEST)
+	@rm -f $(NAME) $(NAME_OP_TEST) $(NAME_PARSER_TEST) $(NAME_ISORT_TEST)
 	@rm -f $(VALGRIND_OUTPUT) vgcore*
 	@echo -e ${GREEN}✓ Executables supprimes${NC}
 	
 re: fclean all
-
-.PHONY: all clean fclean re test_ops test_parser valgrind norm help
+# --- Phony ---
+.PHONY: all clean fclean re test_ops test_parser test_isort \
+        valgrind valgrind_isort norm help

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small_n.c                                     :+:      :+:    :+:   */
+/*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 19:49:39 by mberraho          #+#    #+#             */
-/*   Updated: 2026/02/21 19:59:50 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/28 02:52:05 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include "ft_printf.h"
+#include "push_swap.h"
 typedef struct node
 {
 	int			data;

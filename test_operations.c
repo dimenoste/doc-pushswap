@@ -6,7 +6,7 @@
 /*   By: mberraho <mehdi.berraho@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 19:30:00 by yasmine.aic       #+#    #+#             */
-/*   Updated: 2026/02/28 20:33:20 by mberraho         ###   ########.fr       */
+/*   Updated: 2026/02/28 02:52:05 by yasmine.aichi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 // MARCHENT== JE NE L'AI PAS ECRIT ON VA REPARLER DE L'IMPLEMENTATION DE PRINTF
 // DU PARSING ETC SI ON SE CROISE
 #include "push_swap.h"
-#include <stdio.h>
+#include "ft_printf.h"
 #include <string.h>
+
 
 /* Utilisation de macros pour l'outpur*/
 #define GREEN "\033[0;32m"
