@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+typedef void	(*rotate_f)(t_stack *stack, t_op_list *ops);
+
 // function to find where is the minimum position of the stack list
 // 0 ranked value (index 0). Position is from 1 to len of stack
 // pass a ptr to node by adress to get the min node
@@ -46,17 +48,43 @@ int	is_sorted_circular(t_stack *stk)
 	stk->head = head_orig; // reset the head at the original node
 	return (is_sorted);
 }
+void	rotate_until_sorted(t_stack *stk, t_op_list *ops)
+{
+	size_t		pos_min;
+	t_node		*ptr_min;
+	rotate_f	rot;
 
+	if (!stk || !stk->head || stk->length < 2 || !is_sorted_circular(stk))
+		return ;
+	ptr_min = stk->head;
+	pos_min = find_min_pos(stk, &ptr_min);
+	if (ptr_min->rank != 0 || pos_min == 0)
+	// pos min should be from 1 to len of stack
+	{
+		printf("error, ptr should point to node with 0 index and min value\n");
+		printf("rank found for the min is %zu\n", ptr_min->rank);
+		return ;
+	}
+	if (pos_min < stk->length / 2)
+		rot = &rotate;
+	else
+		rot = &reverse_rotate;
+	while (pos_min > 1)
+	{
+		rot(stk, ops);
+		pos_min--;
+	}
+	return ;
+}
 void	algo_lis(void)
 {
+	t_stack		*a;
+	t_stack		*b;
+	t_op_list	*ops;
+	size_t		len_a;
+
 	printf("============= TEST medium_algo.c: algo_lis ==================\n");
-	t_stack *a;
-	t_stack *b;
-	t_op_list *ops;
-	size_t len_a;
-
 	ops = new_op_list();
-
 	// {8, 3, 4, 6, 5, 2, 0, 7, 9, 1};
 	a = new_stack(A);
 	stack_add_back(a, new_node(8));
@@ -69,7 +97,6 @@ void	algo_lis(void)
 	stack_add_back(a, new_node(7));
 	stack_add_back(a, new_node(9));
 	stack_add_back(a, new_node(1));
-
 	if (a->length < 2)
 		return ;
 	// add lis and rank
@@ -78,9 +105,8 @@ void	algo_lis(void)
 	add_rank_node(a);
 	// create stack b
 	b = new_stack(B);
-	printf("======================================================================\n\n");
+	printf("================================== insert non lis dans B ====================================\n\n");
 	// push all non lis elements to B
-
 	len_a = a->length;
 	while (len_a > 0)
 	{
@@ -90,17 +116,45 @@ void	algo_lis(void)
 			rotate(a, ops);
 		print_stack(a, "A");
 		print_stack(b, "B");
-
 		len_a--;
 	}
-
-	//// print and clean
-	printf("=====================================================================\n\n");
 	print_stack(a, "A");
 	print_stack(b, "B");
 	print_lis_stack(a, "A");
 	print_lis_stack(b, "B");
+	printf("========================= reinsertion dans A ============================================\n\n");
+	// int i = 5;
+	while (b->length > 0) // && i > 0)
+	{
+		printf("head of a %d\n", a->head->value);
+		printf("head of b %d\n", b->head->value);
+		print_stack(a, "A");
+		print_stack(b, "B");
+		if (a->head->rank > b->head->rank)
+			push(b, a, ops);
+		else
+			rotate(a, ops);
+		// i--;
+	}
+	printf("=== A should be circularly up to now rotated,rotate until start with 0 ==\n\n");
+	rotate_until_sorted(a, ops);
+	//// print and clean
+	printf("=====================================================================\n\n");
+	print_stack(a, "A");
+	print_stack(b, "B");
 	clear_stack(&a);
 	clear_stack(&b);
 	printf("======================================================================\n\n");
+}
+
+size_t	square_bucket(size_t len_stk)
+{
+	size_t	i;
+
+	i = 0;
+	while (i * i < len_stk)
+	{
+		i++;
+	}
+	return (i);
 }
